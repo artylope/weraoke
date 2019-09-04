@@ -1,104 +1,11 @@
-@import 'style/button.scss';
+@import url('https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
 
-html, body {
-  min-width: 700px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
+@import 'style/partials/_variables.scss';
 
+@import 'style/partials/base.scss';
+@import 'style/partials/nav.scss';
+@import 'style/partials/form.scss';
+@import 'style/partials/button.scss';
 
-
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-}
-
-.row{
-    display: flex;
-    flex-direction: rows;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-}
-
-.searchList{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    overflow: scroll;
-    height: 50vh;
-    width: 50%;
-    border: 1px solid #eee;
-    padding: 30px;
-
-    input{
-        margin-bottom: 30px;
-    }
-
-}
-
-
-
-.productView{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    height: 50vh;
-    width: 50%;
-    border: 1px solid #eee;
-    padding: 30px;
-}
-
-.cart{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    height: 50vh;
-    width: 50%;
-    border: 1px solid #eee;
-    padding: 30px;
-}
-
-.searchItem{
-    margin-bottom: 10px;
-    font-size: 14px;
-
-    &:hover{
-        color: blue;
-    }
-
-    .searchItemPrice{
-        margin-right: 10px;
-    }
-}
-
-.addProduct{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    height: 50vh;
-    width: 50%;
-    border: 1px solid #eee;
-    padding: 30px;
-
-    div{
-        margin-bottom: 10px;
-    }
-}
+@import 'style/components/playlist.scss';
