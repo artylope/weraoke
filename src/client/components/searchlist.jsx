@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../style.scss';
+
 
 
 class SearchList extends React.Component{
@@ -9,14 +9,14 @@ class SearchList extends React.Component{
      console.log(this.props)
 
      return (
-        <div className={styles.searchList}>
+        <div className="searchList">
             <input/>
            <div>
                {this.props.products.map((product, index) => {
                    return(
-                       <div onClick={ (e) =>{ this.props.handleClickToView(index)} } index={index} className={styles.searchItem} key={index}>
-                            <span className={styles.searchItemPrice}>{product.price}</span>
-                            <span className={styles.searchItemName}>{product.name}</span>
+                       <div onClick={ (e) =>{ this.props.handleClickToView(index)} } index={index} className="searchItem" key={index}>
+                            <span className="searchItemPrice">{product.price}</span>
+                            <span className="searchItemName">{product.name}</span>
                        </div>
                    )
                }

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../style.scss';
+
 
 
 class AddProduct extends React.Component{
@@ -81,7 +81,7 @@ class AddProduct extends React.Component{
 
          if( this.state.requested === false ){
              return(
-                 <div className={styles.addProduct}><h1>Add New Product</h1>
+                 <div className="addProduct"><h1>Add New Product</h1>
 
                      <div>
                          Name:
@@ -96,7 +96,7 @@ class AddProduct extends React.Component{
                          <input onChange={(event) => {this.descChangeHandler(event)}}/>
                      </div>
 
-                      <button className="btn btn-primary btn-lg" onClick={(event)=>{this.submit(event);}}>create product</button>
+                      <button className="large" onClick={(event)=>{this.submit(event);}}>create product</button>
 
 
                  </div>

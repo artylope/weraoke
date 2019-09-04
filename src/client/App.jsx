@@ -1,6 +1,6 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
-import styles from 'style.scss';
+// import styles from 'style.scss';
 
 import SearchList from './components/searchlist';
 import ProductView from './components/productview';
@@ -91,7 +91,7 @@ class App extends React.Component {
 
       if (error) {
           return (
-              <div className={styles.container}>
+              <div className="container">
                   <div>Error: {error.message}</div>
                   <SearchList
                         products = {products}
@@ -105,7 +105,7 @@ class App extends React.Component {
 
       } else if (!isLoaded) {
           return (
-              <div className={styles.container}>
+              <div className="container">
                   <div>Loading...</div>
                   <SearchList products = {this.state.products} error={error} isLoaded={isLoaded} handleClickToView={this.handleClickToView}/>
                   <ProductView selectedItem = {this.state.selectedItem} handleAddToCart={this.handleAddToCart}/>
@@ -117,13 +117,13 @@ class App extends React.Component {
 
       } else {
           return (
-              <div className={styles.container}>
-                <div className={styles.row}>
+                <div className="container">
+                <div className="row">
                     <SearchList products = {this.state.products} error={error} isLoaded={isLoaded} handleClickToView={this.handleClickToView}/>
                     <ProductView selectedItem = {this.state.selectedItem} handleAddToCart={this.handleAddToCart}/>
                 </div>
 
-                <div className={styles.row}>
+                <div className="row">
                     <Cart cartItems={this.state.cartItems}/>
                     <AddProduct addNewProduct={this.addNewProduct}/>
                 </div>

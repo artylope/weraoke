@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from '../style.scss';
+
 
 class ProductView extends React.Component{
 
@@ -8,7 +8,7 @@ class ProductView extends React.Component{
     render(){
         if(this.props.selectedItem){
             return(
-                <div className={styles.productView}>
+                <div className="productView">
                     <h1>Product View</h1>
                     <br/>
                     <p>{this.props.selectedItem.name}</p>
@@ -22,7 +22,7 @@ class ProductView extends React.Component{
             )
         } else{
             return(
-                <div className={styles.productView}>
+                <div className="productView">
                     <h1>Product View</h1>
                 </div>
             )

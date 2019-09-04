@@ -65,7 +65,7 @@ class Form extends React.Component {
 
         <p>{this.state.monkey}</p>
         <button onClick={this.doReq}>Make ajax Request </button>
-        <input className={styles.name} />
+        <input className="name" />
       </div>
     );
   }
