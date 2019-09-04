@@ -26,14 +26,18 @@ app.set('env', process.env.NODE_ENV);
 // Set up middleware
 app.use(methodOverride('_method'));
 app.use(cookieParser());
+
+//add This!
 app.use(express.json());
 
 // app.use(express.static('public'))
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
-app.use(express.urlencoded({
-  extended: true
-}));
+app.use(
+  express.urlencoded({
+    extended: true
+  })
+);
 
 // Set react-views to be the default view engine
 const reactEngine = require('express-react-views').createEngine();

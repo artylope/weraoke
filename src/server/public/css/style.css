@@ -1,0 +1,89 @@
+button {
+  background: purple; }
+  button.large {
+    padding: 30px;
+    font-size: 50px;
+    color: white;
+    border-radius: 20px; }
+
+html, body {
+  min-width: 700px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0; }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%; }
+
+.row {
+  display: flex;
+  flex-direction: rows;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%; }
+
+.searchList {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow: scroll;
+  height: 50vh;
+  width: 50%;
+  border: 1px solid #eee;
+  padding: 30px; }
+  .searchList input {
+    margin-bottom: 30px; }
+
+.productView {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 50vh;
+  width: 50%;
+  border: 1px solid #eee;
+  padding: 30px; }
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 50vh;
+  width: 50%;
+  border: 1px solid #eee;
+  padding: 30px; }
+
+.searchItem {
+  margin-bottom: 10px;
+  font-size: 14px; }
+  .searchItem:hover {
+    color: blue; }
+  .searchItem .searchItemPrice {
+    margin-right: 10px; }
+
+.addProduct {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 50vh;
+  width: 50%;
+  border: 1px solid #eee;
+  padding: 30px; }
+  .addProduct div {
+    margin-bottom: 10px; }
