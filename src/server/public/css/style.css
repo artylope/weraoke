@@ -41,58 +41,103 @@ button {
   button:hover {
     background: #fc5eae; }
 
+.playlist-section {
+  position: absolute;
+  overflow: hidden;
+  width: 400px;
+  right: 0;
+  top: 0;
+  height: 100%; }
+
 .playlist {
   position: absolute;
   right: 0;
   top: 0;
   height: 100%;
-  min-width: 400px;
-  background: #262639;
-  padding: 20px; }
-  .playlist .playlist-item {
-    padding: 20px 20px;
+  width: 400px;
+  background: #262639; }
+  .playlist .playlist-hide {
+    margin-top: 20px;
+    padding: 0px 20px; }
+    .playlist .playlist-hide i {
+      font-size: 30px; }
+  .playlist .playlist-title {
+    padding: 0px 20px;
+    width: 100%;
+    background: #262639; }
+    .playlist .playlist-title h1 {
+      font-size: 40px; }
+  .playlist .playlist-list {
+    padding: 0px 20px;
+    overflow-y: scroll;
+    height: 80%; }
+    .playlist .playlist-list .playlist-item {
+      padding: 20px 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      background: #171727;
+      color: #93939c;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      width: 100%; }
+      .playlist .playlist-list .playlist-item:hover {
+        transform: translateY(-5px);
+        background: #1b1b2c;
+        color: white; }
+      .playlist .playlist-list .playlist-item.active {
+        background: #1f1f30;
+        border: 1px solid #fb45a2;
+        color: white; }
+        .playlist .playlist-list .playlist-item.active .song-artist {
+          color: white !important; }
+      .playlist .playlist-list .playlist-item .playlist-item-order {
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-basis: 30px; }
+      .playlist .playlist-list .playlist-item .playlist-item-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center; }
+        .playlist .playlist-list .playlist-item .playlist-item-content .song-info {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 10px; }
+        .playlist .playlist-list .playlist-item .playlist-item-content .song-artist {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          font-size: .7em;
+          color: #7a7a8c; }
+
+.playlist-control-wrapper {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 400px;
+  -webkit-box-shadow: 0px -59px 74px 35px #2d2d41;
+  -moz-box-shadow: 0px -59px 74px 35px #2d2d41;
+  box-shadow: 0px -59px 74px 35px #2d2d41; }
+  .playlist-control-wrapper .playlist-control {
+    background: #2d2d41;
+    height: 100px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    background: #171727;
     color: #93939c;
-    border: 1px solid transparent;
     border-radius: 5px;
-    margin-bottom: 15px;
     width: 100%; }
-    .playlist .playlist-item:hover {
-      transform: translateY(-5px);
-      background: #1b1b2c;
-      color: white; }
-    .playlist .playlist-item.active {
-      background: #1f1f30;
-      border: 1px solid #fb45a2;
-      color: white; }
-      .playlist .playlist-item.active .song-artist {
-        color: white !important; }
-    .playlist .playlist-item .playlist-item-order {
-      justify-content: flex-start;
-      align-items: flex-start;
-      flex-basis: 30px; }
-    .playlist .playlist-item .playlist-item-content {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center; }
-      .playlist .playlist-item .playlist-item-content .song-info {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px; }
-      .playlist .playlist-item .playlist-item-content .song-artist {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        font-size: .7em;
-        color: #7a7a8c; }
