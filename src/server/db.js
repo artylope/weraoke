@@ -1,10 +1,11 @@
 const pg = require('pg');
-const products = require('./models/products');
+const pokemon = require('./models/pokemon');
 const url = require('url');
 
 var configs;
 
-if (process.env.DATABASE_URL) {
+if( process.env.DATABASE_URL ){
+
   const params = url.parse(process.env.DATABASE_URL);
   const auth = params.auth.split(':');
 
@@ -16,18 +17,20 @@ if (process.env.DATABASE_URL) {
     database: params.pathname.split('/')[1],
     ssl: true
   };
-} else {
+
+}else{
   configs = {
-    user: 'yixin',
+    user: 'aliciawong',
     host: '127.0.0.1',
-    database: 'shopping',
+    database: 'weraoke',
     port: 5432
   };
 }
 
+
 const pool = new pg.Pool(configs);
 
-pool.on('error', function(err) {
+pool.on('error', function (err) {
   console.log('idle client error', err.message, err.stack);
 });
 
@@ -35,7 +38,7 @@ module.exports = {
   /*
    * ADD APP MODELS HERE
    */
-  products: products(pool),
+  pokemon: pokemon(pool),
 
   //make queries directly from here
   queryInterface: (text, params, callback) => {
@@ -43,5 +46,5 @@ module.exports = {
   },
 
   // get a reference to end the connection pool at server end
-  pool: pool
+  pool:pool
 };
