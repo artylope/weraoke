@@ -2,10 +2,10 @@ import React from 'react';
 import { hot } from 'react-hot-loader';
 import styles from 'style.scss';
 
-import SearchList from './components/searchlist/searchlist';
-import ProductView from './components/productview/productview';
-import Cart from './components/cart/cart';
-import AddProduct from './components/addProduct/addProduct';
+import SearchList from './components/searchlist';
+import ProductView from './components/productview';
+import Cart from './components/cart';
+import AddProduct from './components/addProduct';
 
 class App extends React.Component {
   constructor() {
