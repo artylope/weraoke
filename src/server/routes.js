@@ -1,8 +1,6 @@
 module.exports = (app, db) => {
+  const products = require('./controllers/products')(db);
 
-  const pokemon = require('./controllers/pokemon')(db);
-
-  app.get('/pokemon/:id', pokemon.get);
-
-  app.get('/api/pokemon/:id', pokemon.apiget);
+  app.get('/products', products.getAll);
+  app.post('/newproduct', products.newProduct);
 };
