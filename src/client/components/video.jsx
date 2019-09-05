@@ -12,6 +12,9 @@ class Video extends React.Component{
       let youtubeId = this.props.nowPlaying.video_link ;
       let embedUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&controls=0`
 
+
+
+
      return (
 
         <div className="video">

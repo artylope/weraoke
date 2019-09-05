@@ -17,7 +17,7 @@ class App extends React.Component {
     this.state = {
       playlist: true,
       sessionSongs: sessionSongs,
-      nowPlaying: ""
+      nowPlaying: sessionSongs[0]
     };
 
 
@@ -39,8 +39,9 @@ class App extends React.Component {
     }
   }
 
-  handlePlaylistItemClick(index){
+  handlePlaylistItemClick(index, videoDuration){
     console.log('clicked playlist ', index);
+    console.log('video duration ', videoDuration);
     let selectedSong = this.state.sessionSongs[index];
     this.setState({
       nowPlaying: selectedSong

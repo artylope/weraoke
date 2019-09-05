@@ -3,7 +3,7 @@ const sessionSongs = [
         "name": "Say Something",
         "artist": "A Great Big World and Christina Aguilera",
         "video_link": "-2U0Ivkn2Ds",
-        "duration": "PT3H26M43S",
+        "duration": "PT3S",
         "order": 1,
         "status": "watched"
     },

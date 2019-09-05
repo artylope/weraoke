@@ -21,32 +21,47 @@ class PlaylistItem extends React.Component{
     duration = duration.replace(/([^0-9])+/g, ",");
     let durationArray = duration.split(',');
 
-    let songDurH, songDurM, songDurS;
+    let songDurH, songDurM, songDurS, videoDurationInSecs;
 
     if( durationArray.length === 4){
-      songDurH = durationArray[0];
-      songDurM = durationArray[1];
-      songDurS = durationArray[2];
+      songDurH = parseInt(durationArray[0]);
+      songDurM = parseInt(durationArray[1]);
+      songDurS = parseInt(durationArray[2]);
+      videoDurationInSecs = ((songDurH*60) + songDurM)*60 + songDurS;
     } else if( durationArray.length === 3){
-      songDurM = durationArray[0];
-      songDurS = durationArray[1];
+      songDurM = parseInt(durationArray[0]);
+      songDurS = parseInt(durationArray[1]);
+      videoDurationInSecs = (songDurM*60) + songDurS;
     } else if(durationArray.length === 2){
-      songDurS = durationArray[0];
+      songDurS = parseInt(durationArray[0]);
+      videoDurationInSecs = songDurS;
     }
 
+    console.log(songDurH);
+    console.log(songDurM);
+    console.log(songDurS);
 
     let songDurDisplay;
 
-    if(songDurH === undefined){
-      songDurDisplay = `${songDurM}:${songDurS.padStart(2, '0')}`
+    if(songDurH === undefined && songDurM > 0){
+      songDurDisplay = `${songDurM.toString()}:${songDurS.toString().padStart(2, '0')}`
     } else if(songDurH === undefined && songDurM === undefined){
-      songDurDisplay = `${songDurS.padStart(2, '0')}`
+      songDurDisplay = `${songDurS.toString()}`
     } else {
-      songDurDisplay = `${songDurH}:${songDurM.padStart(2, '0')}:${songDurS.padStart(2, '0')}`
+      songDurDisplay = `${songDurH.toString()}:${songDurM.toString().padStart(2, '0')}:${songDurS.toString().padStart(2, '0')}`
     }
 
+    console.log(songDurDisplay);
+
+    console.log('videoDurationInSecs ', videoDurationInSecs)
+
+
+
+
+
+
      return (
-        <div className={playlistItemClasses} onClick={()=>{this.props.handlePlaylistItemClick(this.props.index)}}>
+        <div className={playlistItemClasses} onClick={()=>{this.props.handlePlaylistItemClick(this.props.index, videoDurationInSecs )}}>
             <div className="playlist-item-order">{this.props.song.order}</div>
             <div className="playlist-item-content">
                 <div className="song-info"><p>{this.props.song.name}</p> <p>{songDurDisplay}</p></div>
