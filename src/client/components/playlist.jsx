@@ -35,62 +35,6 @@ class Playlist extends React.Component{
 
               <div className="playlist-list">
                     {playlistItems}
-                    <div className="playlist-item completed">
-                        <div className="playlist-item-order">1</div>
-                        <div className="playlist-item-content">
-                            <div className="song-info"><p>Say Something</p> <p>3:24</p></div>
-                            <div className="song-artist"><p>A Great Big World, Christina Aguilera</p></div>
-                        </div>
-                    </div>
-                    <div className="playlist-item completed">
-                        <div className="playlist-item-order">2</div>
-                        <div className="playlist-item-content">
-                            <div className="song-info"><p>Say Something</p> <p>3:24</p></div>
-                            <div className="song-artist"><p>A Great Big World, Christina Aguilera</p></div>
-                        </div>
-                    </div>
-                    <div className="playlist-item active">
-                        <div className="playlist-item-order"><i class='bx bx-play' ></i></div>
-                        <div className="playlist-item-content">
-                            <div className="song-info"><p>Say Something</p> <p>3:24</p></div>
-                            <div className="song-artist"><p>A Great Big World, Christina Aguilera</p></div>
-                        </div>
-                    </div>
-                    <div className="playlist-item">
-                        <div className="playlist-item-order">4</div>
-                        <div className="playlist-item-content">
-                            <div className="song-info"><p>Say Something</p> <p>3:24</p></div>
-                            <div className="song-artist"><p>A Great Big World, Christina Aguilera</p></div>
-                        </div>
-                    </div>
-                    <div className="playlist-item">
-                        <div className="playlist-item-order">5</div>
-                        <div className="playlist-item-content">
-                            <div className="song-info"><p>Say Something</p> <p>3:24</p></div>
-                            <div className="song-artist"><p>A Great Big World, Christina Aguilera</p></div>
-                        </div>
-                    </div>
-                    <div className="playlist-item">
-                        <div className="playlist-item-order">6</div>
-                        <div className="playlist-item-content">
-                            <div className="song-info"><p>Say Something</p> <p>3:24</p></div>
-                            <div className="song-artist"><p>A Great Big World, Christina Aguilera</p></div>
-                        </div>
-                    </div>
-                    <div className="playlist-item">
-                        <div className="playlist-item-order">7</div>
-                        <div className="playlist-item-content">
-                            <div className="song-info"><p>Say Something</p> <p>3:24</p></div>
-                            <div className="song-artist"><p>A Great Big World, Christina Aguilera</p></div>
-                        </div>
-                    </div>
-                    <div className="playlist-item">
-                        <div className="playlist-item-order">8</div>
-                        <div className="playlist-item-content">
-                            <div className="song-info"><p>Say Something</p> <p>3:24</p></div>
-                            <div className="song-artist"><p>A Great Big World, Christina Aguilera</p></div>
-                        </div>
-                    </div>
               </div>
           </div>
           <div className="playlist-control-wrapper">

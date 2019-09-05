@@ -3,23 +3,23 @@ const sessionSongs = [
         "name": "Say Something",
         "artist": "A Great Big World and Christina Aguilera",
         "video_link": "-2U0Ivkn2Ds",
-        "duration": "PT3M52S",
+        "duration": "PT3H26M43S",
         "order": 1,
-        "status": "unwatched"
+        "status": "watched"
     },
     {
         "name": "How Far I'll Go",
         "artist": "Auli'i Cravalho",
         "video_link": "cPAbx5kgCJo",
-        "duration": "PT2M35S",
+        "duration": "PT12M35S",
         "order": 2,
-        "status": "unwatched"
+        "status": "playing"
     },
     {
         "name": "We are Young",
         "artist": "Fun. ft. Janelle Monáe",
         "video_link": "Sv6dMFF_yts",
-        "duration": "PT1M3S",
+        "duration": "PT2H1M3S",
         "order": 3,
         "status": "unwatched"
     },
