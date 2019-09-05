@@ -18,11 +18,11 @@ class Playlist extends React.Component{
      return (
        <div className={playlistClasses}>
           <div className="playlist">
-              <div className="playlist-hide" onClick={()=>{this.props.handlePlaylistShowHide(this.props.playlist)}}>
-                <i class='bx bx-chevron-right' ></i>
-              </div>
               <div className="playlist-title">
                   <h1>Playlist</h1>
+                  <div className="playlist-hide" onClick={()=>{this.props.handlePlaylistShowHide(this.props.playlist)}}>
+                    <i class='bx bx-x-circle' ></i>
+                  </div>
               </div>
 
 

@@ -7,6 +7,7 @@ import { hot } from 'react-hot-loader';
 import Search from './components/search';
 import Playlist from './components/playlist';
 import PlaylistButton from './components/playlistButton';
+import Video from './components/video';
 
 
 class App extends React.Component {

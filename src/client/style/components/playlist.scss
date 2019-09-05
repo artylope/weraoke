@@ -38,21 +38,18 @@ $playlist-item-artist: #7a7a8c;
   background: $body-bg-light;
 
 
-
-  .playlist-hide{
-    padding: 20px;
-    i{
-      font-size: 40px;
-    }
-  }
-
   .playlist-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
     padding: 0px 30px;
     width: 100%;
     background: $body-bg-light;
     z-index: 10;
-    margin-top: 10px;
-    margin-bottom: 30px;
+    margin-top: 30px;
+    margin-bottom: 40px;
 
     -webkit-box-shadow: 0px 59px 74px 35px rgba(38,38,57,1);
     -moz-box-shadow: 0px 59px 74px 35px rgba(38,38,57,1);
@@ -62,6 +59,12 @@ $playlist-item-artist: #7a7a8c;
       font-size: 40px;
       margin: 0;
 
+    }
+
+    .playlist-hide{
+      i{
+        font-size: 30px;
+      }
     }
   }
 
