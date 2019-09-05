@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import PlaylistItem from './playlistItem';
+
 
 
 class Playlist extends React.Component{
@@ -16,13 +18,7 @@ class Playlist extends React.Component{
 
      let playlistItems = this.props.sessionSongs.map((song, index) => {
        return(
-         <div className="playlist-item">
-             <div className="playlist-item-order">{song.order}</div>
-             <div className="playlist-item-content">
-                 <div className="song-info"><p>{song.name}</p> <p>{song.duration}</p></div>
-                 <div className="song-artist"><p>{song.artist}</p></div>
-             </div>
-         </div>
+         <PlaylistItem key={index} song={song}/>
        );
      })
 
