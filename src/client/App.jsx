@@ -17,11 +17,12 @@ class App extends React.Component {
     this.state = {
       playlist: true,
       sessionSongs: sessionSongs,
-      nowPlaying: [],
+      nowPlaying: ""
     };
 
 
     this.handlePlaylistShowHide = this.handlePlaylistShowHide.bind(this);
+    this.handlePlaylistItemClick = this.handlePlaylistItemClick.bind(this);
   }
 
   handlePlaylistShowHide(state){
@@ -38,9 +39,17 @@ class App extends React.Component {
     }
   }
 
+  handlePlaylistItemClick(index){
+    console.log('clicked playlist ', index);
+    let selectedSong = this.state.sessionSongs[index];
+    this.setState({
+      nowPlaying: selectedSong
+    })
+  }
+
   render(){
-    console.log("session songs")
-    console.log(this.state.sessionSongs)
+    // console.log("session songs")
+    // console.log(this.state.sessionSongs)
     return(
       <div>
       <h1 className="logo">Weraoke</h1>
@@ -48,10 +57,10 @@ class App extends React.Component {
 
 
         <Search/>
-        <Video/>
+        <Video nowPlaying={this.state.nowPlaying} />
 
         <PlaylistButton playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} />
-        <Playlist nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide}/>
+        <Playlist nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} handlePlaylistItemClick= {this.handlePlaylistItemClick}/>
       </div>
     )
   }

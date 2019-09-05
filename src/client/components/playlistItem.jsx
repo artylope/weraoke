@@ -7,9 +7,6 @@ class PlaylistItem extends React.Component{
 
   render() {
 
-
-    console.log(this.props)
-
     let playlistItemClasses = "";
     if (this.props.song.status === "playing"){
       playlistItemClasses = "playlist-item active"
@@ -23,7 +20,6 @@ class PlaylistItem extends React.Component{
     duration = duration.replace('PT','')
     duration = duration.replace(/([^0-9])+/g, ",");
     let durationArray = duration.split(',');
-    console.log(durationArray);
 
     let songDurH, songDurM, songDurS;
 
@@ -38,9 +34,6 @@ class PlaylistItem extends React.Component{
       songDurS = durationArray[0];
     }
 
-    console.log(songDurH);
-    console.log(songDurM);
-    console.log(songDurS);
 
     let songDurDisplay;
 
@@ -53,7 +46,7 @@ class PlaylistItem extends React.Component{
     }
 
      return (
-        <div className={playlistItemClasses}>
+        <div className={playlistItemClasses} onClick={()=>{this.props.handlePlaylistItemClick(this.props.index)}}>
             <div className="playlist-item-order">{this.props.song.order}</div>
             <div className="playlist-item-content">
                 <div className="song-info"><p>{this.props.song.name}</p> <p>{songDurDisplay}</p></div>
