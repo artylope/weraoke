@@ -1,5 +1,6 @@
 const pg = require('pg');
 const songs = require('./models/songs');
+const sessions_songs = require('./models/sessions_songs');
 const url = require('url');
 
 var configs;
@@ -36,7 +37,7 @@ module.exports = {
    * ADD APP MODELS HERE
    */
   songs: songs(pool),
-
+  sessions_songs: sessions_songs(pool),
   //make queries directly from here
   queryInterface: (text, params, callback) => {
     return pool.query(text, params, callback);
