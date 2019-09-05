@@ -9,12 +9,15 @@ import Playlist from './components/playlist';
 import PlaylistButton from './components/playlistButton';
 import Video from './components/video';
 
+import sessionSongs from './data/sessionSongs.js';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      playlist: false
+      playlist: false,
+      sessionSongs: sessionSongs,
+      nowPlaying: [],
     };
 
 
@@ -36,17 +39,19 @@ class App extends React.Component {
   }
 
   render(){
+    console.log("session songs")
+    console.log(this.state.sessionSongs)
     return(
       <div>
       <h1 className="logo">Weraoke</h1>
         Lorem Ipsum
 
 
-        <div><iframe width="560" height="315" src="https://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&controls=0" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
         <Search/>
+        <Video/>
 
         <PlaylistButton playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} />
-        <Playlist playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide}/>
+        <Playlist nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide}/>
       </div>
     )
   }

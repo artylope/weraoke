@@ -1,11 +1,10 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 
 
 class PlaylistButton extends React.Component{
 
   render(){
-    console.log(this.props);
 
     let playlistButtonClasses = "";
 

@@ -1,12 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 
 class Playlist extends React.Component{
 
   render() {
-     console.log(this.props)
-
      let playlistClasses = "";
 
      if(this.props.playlist === true){
@@ -15,19 +14,31 @@ class Playlist extends React.Component{
        playlistClasses = "playlist-section hide"
      }
 
+     let playlistItems = this.props.sessionSongs.map((song, index) => {
+       return(
+         <div className="playlist-item">
+             <div className="playlist-item-order">{song.order}</div>
+             <div className="playlist-item-content">
+                 <div className="song-info"><p>{song.name}</p> <p>{song.duration}</p></div>
+                 <div className="song-artist"><p>{song.artist}</p></div>
+             </div>
+         </div>
+       );
+     })
+
      return (
        <div className={playlistClasses}>
           <div className="playlist">
               <div className="playlist-title">
                   <h1>Playlist</h1>
                   <div className="playlist-hide" onClick={()=>{this.props.handlePlaylistShowHide(this.props.playlist)}}>
-                    <i class='bx bx-x-circle' ></i>
+                    <i className='bx bx-x-circle' ></i>
                   </div>
               </div>
 
 
               <div className="playlist-list">
-
+                    {playlistItems}
                     <div className="playlist-item completed">
                         <div className="playlist-item-order">1</div>
                         <div className="playlist-item-content">
@@ -88,11 +99,11 @@ class Playlist extends React.Component{
           </div>
           <div className="playlist-control-wrapper">
               <div className="playlist-control">
-                <div className="prev-song"><i class='bx bx-shuffle' ></i></div>
-                <div className="prev-song"><i class='bx bx-skip-previous' ></i></div>
-                <div className="play-pause"><i class='bx bx-play'></i></div>
-                <div className="next-song"><i class='bx bx-skip-next' ></i></div>
-                <div className="prev-song"><i class='bx bxs-share-alt' ></i></div>
+                <div className="prev-song"><i className='bx bx-shuffle' ></i></div>
+                <div className="prev-song"><i className='bx bx-skip-previous' ></i></div>
+                <div className="play-pause"><i className='bx bx-play'></i></div>
+                <div className="next-song"><i className='bx bx-skip-next' ></i></div>
+                <div className="prev-song"><i className='bx bxs-share-alt' ></i></div>
 
               </div>
 

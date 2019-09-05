@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 
@@ -6,11 +7,9 @@ class Search extends React.Component{
 
 
   render() {
-     console.log(this.props)
 
      return (
         <div className="search">
-        <h1>Weareoke</h1>
         <i className='bx bx-search-alt'></i>
         <input/>
         </div>
