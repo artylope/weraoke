@@ -7,7 +7,8 @@ class PlaylistItem extends React.Component{
 
   render() {
 
-    console.log(this.props.song.name)
+
+    console.log(this.props)
 
     let playlistItemClasses = "";
     if (this.props.song.status === "playing"){

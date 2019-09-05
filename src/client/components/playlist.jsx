@@ -8,6 +8,15 @@ import PlaylistItem from './playlistItem';
 class Playlist extends React.Component{
 
   render() {
+      let currentSong;
+      if (this.props.nowPlaying.length === 0){
+        currentSong = this.props.sessionSongs[0];
+        console.log(currentSong)
+      } else {
+        currentSong = this.props.nowPlaying[0];
+        console.log(currentSong)
+      }
+
      let playlistClasses = "";
 
      if(this.props.playlist === true){
@@ -18,7 +27,7 @@ class Playlist extends React.Component{
 
      let playlistItems = this.props.sessionSongs.map((song, index) => {
        return(
-         <PlaylistItem key={index} song={song}/>
+         <PlaylistItem key={index} id={index} song={song} />
        );
      })
 
