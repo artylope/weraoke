@@ -81,7 +81,11 @@ class Playlist extends React.Component{
           </div>
           <div className="playlist-control-wrapper">
               <div className="playlist-control">
-
+                <div className="prev-song"><i class='bx bx-shuffle' ></i></div>
+                <div className="prev-song"><i class='bx bx-skip-previous' ></i></div>
+                <div className="play-pause"><i class='bx bx-play'></i></div>
+                <div className="next-song"><i class='bx bx-skip-next' ></i></div>
+                <div className="prev-song"><i class='bx bxs-share-alt' ></i></div>
 
               </div>
 
