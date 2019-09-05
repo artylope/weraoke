@@ -40,8 +40,7 @@ $playlist-item-artist: #7a7a8c;
 
 
   .playlist-hide{
-    margin-top: 20px;
-    padding: 5px;
+    padding: 20px;
     i{
       font-size: 40px;
     }
@@ -52,6 +51,8 @@ $playlist-item-artist: #7a7a8c;
     width: 100%;
     background: $body-bg-light;
     z-index: 10;
+    margin-top: 10px;
+    margin-bottom: 30px;
 
     -webkit-box-shadow: 0px 59px 74px 35px rgba(38,38,57,1);
     -moz-box-shadow: 0px 59px 74px 35px rgba(38,38,57,1);
@@ -59,6 +60,7 @@ $playlist-item-artist: #7a7a8c;
 
     h1{
       font-size: 40px;
+      margin: 0;
 
     }
   }

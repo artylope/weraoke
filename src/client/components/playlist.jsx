@@ -4,15 +4,22 @@ import React from 'react';
 
 class Playlist extends React.Component{
 
-
   render() {
      console.log(this.props)
 
+     let playlistClasses = "";
+
+     if(this.props.playlist === true){
+       playlistClasses = "playlist-section show"
+     } else if (this.props.playlist === false){
+       playlistClasses = "playlist-section hide"
+     }
+
      return (
-       <div className="playlist-section">
+       <div className={playlistClasses}>
           <div className="playlist">
-              <div className="playlist-hide">
-                <i class='bx bx-chevron-left' ></i>
+              <div className="playlist-hide" onClick={()=>{this.props.handlePlaylistShowHide(this.props.playlist)}}>
+                <i class='bx bx-chevron-right' ></i>
               </div>
               <div className="playlist-title">
                   <h1>Playlist</h1>
