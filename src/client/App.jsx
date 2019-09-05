@@ -24,6 +24,7 @@ class App extends React.Component {
       <h1 className="logo">Weraoke</h1>
         Lorem Ipsum
         <button>Hello</button>
+        <div><iframe width="560" height="315" src="https://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&controls=0" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
         <Search/>
         <Playlist/>
       </div>
