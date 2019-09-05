@@ -6,6 +6,7 @@ import SearchList from './components/searchlist';
 import ProductView from './components/productview';
 import Cart from './components/cart';
 import AddProduct from './components/addProduct';
+import Song from './components/songs';
 
 class App extends React.Component {
   constructor() {
@@ -13,14 +14,16 @@ class App extends React.Component {
     this.state = {
         error: null,
         isLoaded: false,
-        products: [],
+        songs: [],
         selectedItem: "",
-        cartItems: []
+        cartItems: [],
+        products: []
     };
 
     this.handleClickToView = this.handleClickToView.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.addNewProduct = this.addNewProduct.bind(this);
+
   }
 
   handleClickToView(index){
@@ -65,13 +68,13 @@ class App extends React.Component {
       }
 
   componentDidMount() {
-    fetch("http://localhost:3000/products")
+    fetch("http://localhost:3000/songs")
       .then(res => res.json())
       .then(
         (result) => {
           this.setState({
             isLoaded: true,
-            products: result.products
+            songs: result.songs
           });
         },
         // Note: it's important to handle errors here
@@ -87,7 +90,7 @@ class App extends React.Component {
   }
 
   render() {
-      const { error, isLoaded, products } = this.state;
+      const { error, isLoaded, songs } = this.state;
 
       if (error) {
           return (
@@ -121,12 +124,13 @@ class App extends React.Component {
                 <div className="row">
                     <SearchList products = {this.state.products} error={error} isLoaded={isLoaded} handleClickToView={this.handleClickToView}/>
                     <ProductView selectedItem = {this.state.selectedItem} handleAddToCart={this.handleAddToCart}/>
+                    <Songs songs = {this.state.songs}/>
                 </div>
 
-                <div className="row">
-                    <Cart cartItems={this.state.cartItems}/>
-                    <AddProduct addNewProduct={this.addNewProduct}/>
-                </div>
+                // <div className="row">
+                //     <Cart cartItems={this.state.cartItems}/>
+                //     <AddProduct addNewProduct={this.addNewProduct}/>
+                // </div>
 
 
               </div>

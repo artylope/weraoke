@@ -1,5 +1,5 @@
 const pg = require('pg');
-const products = require('./models/products');
+const songs = require('./models/songs');
 const url = require('url');
 
 var configs;
@@ -18,9 +18,9 @@ if (process.env.DATABASE_URL) {
   };
 } else {
   configs = {
-    user: 'yixin',
+    user: 'aliciawong',
     host: '127.0.0.1',
-    database: 'shopping',
+    database: 'weraoke',
     port: 5432
   };
 }
@@ -35,7 +35,7 @@ module.exports = {
   /*
    * ADD APP MODELS HERE
    */
-  products: products(pool),
+  songs: songs(pool),
 
   //make queries directly from here
   queryInterface: (text, params, callback) => {
