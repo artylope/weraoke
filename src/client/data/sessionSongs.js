@@ -86,6 +86,14 @@ const sessionSongs = [
         "duration": "PT3M38S",
         "order": 11,
         "status": "unwatched"
+    },
+    {
+        "name": "不愛我就拉倒",
+        "artist": "周杰倫",
+        "video_link": "MAjY8mCTXWk",
+        "duration": "PT6M10S",
+        "order": 12,
+        "status": "unwatched"
     }
 
 ]
