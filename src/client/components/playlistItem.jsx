@@ -8,11 +8,16 @@ class PlaylistItem extends React.Component{
   render() {
 
 
-    let playlistItemClasses = "playlist-item";
+    let playlistItemClasses = "";
 
     if(this.props.nowPlaying.name === this.props.song.name){
       playlistItemClasses = "playlist-item active"
+    } else if(this.props.nowPlaying.name != this.props.song.name && this.props.nowPlaying.order > this.props.song.order){
+      playlistItemClasses = "playlist-item completed"
+    } else {
+      playlistItemClasses = "playlist-item"
     }
+
     // if (this.props.song.status === "playing"){
     //   playlistItemClasses = "playlist-item active"
     // }else if(this.props.song.status === "watched"){
@@ -45,11 +50,11 @@ class PlaylistItem extends React.Component{
       songDurDisplay = `0:${songDurS.toString().padStart(2, '0')}`;
     }
 
-    console.log(songDurH);
-    console.log(songDurM);
-    console.log(songDurS);
-    console.log(songDurDisplay);
-    console.log('videoDurationInSecs ', videoDurationInSecs)
+    // console.log(songDurH);
+    // console.log(songDurM);
+    // console.log(songDurS);
+    // console.log(songDurDisplay);
+    // console.log('videoDurationInSecs ', videoDurationInSecs)
 
      return (
         <div className={playlistItemClasses} onClick={()=>{this.props.handlePlaylistItemClick(this.props.index, videoDurationInSecs )}}>

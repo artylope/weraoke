@@ -20,12 +20,20 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
+
+      //playlist UI stuff
       playlist: true,
+
+      //playlist data stuff
       sessionSongs: sessionSongs,
+
+      //current song info
       currentVideoDuration: "",
       nowPlaying: sessionSongs[0],
       prevSong: "",
       nextSong: sessionSongs[1],
+
+      //ajax of songs
       error: null,
       isLoaded: false,
       songs: []
@@ -52,8 +60,8 @@ class App extends React.Component {
   }
 
   handlePlaylistItemClick(index, videoDuration){
-    console.log('clicked playlist ', index);
-    console.log('video duration ', videoDuration);
+    // console.log('clicked playlist ', index);
+    // console.log('video duration ', videoDuration);
     let selectedSong = this.state.sessionSongs[index];
     this.setState({
       nowPlaying: selectedSong,
@@ -66,11 +74,11 @@ class App extends React.Component {
     const obj = this;
 
     var responseHandler = function() {
-        console.log("response text", this.responseText);
-        console.log("status text", this.statusText);
-        console.log("status code", this.status);
+        // console.log("response text", this.responseText);
+        // console.log("status text", this.statusText);
+        // console.log("status code", this.status);
         const result = JSON.parse( this.responseText);
-        console.log(result)
+        // console.log(result)
 
         obj.setState({
             isLoaded: true,
