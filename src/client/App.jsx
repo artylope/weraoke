@@ -57,7 +57,7 @@ class App extends React.Component {
     let selectedSong = this.state.sessionSongs[index];
     this.setState({
       nowPlaying: selectedSong,
-      playlist: false
+      // playlist: false
     })
   }
 

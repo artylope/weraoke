@@ -19,7 +19,7 @@ class Playlist extends React.Component{
 
      let playlistItems = this.props.sessionSongs.map((song, index) => {
        return(
-         <PlaylistItem key={index} index={index} song={song} handlePlaylistItemClick = {this.props.handlePlaylistItemClick} />
+         <PlaylistItem key={index} index={index} song={song} nowPlaying={this.props.nowPlaying} handlePlaylistItemClick = {this.props.handlePlaylistItemClick} />
        );
      })
 
