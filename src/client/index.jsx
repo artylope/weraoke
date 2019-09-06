@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom';
 
 import App from './App';
 
-// global styles
-import './style.scss';
+// // global styles
+// import './style.scss';
 
 ReactDOM.render(<App />, document.getElementById('app'));
