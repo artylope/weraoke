@@ -30,8 +30,8 @@ class App extends React.Component {
       //current song info
       currentVideoDuration: "",
       nowPlaying: 0,
-      prevSong: "",
-      nextSong: sessionSongs[1],
+      isPlaying: true,
+
 
       //ajax of songs
       error: null,
@@ -143,7 +143,7 @@ class App extends React.Component {
         <Search/>
         <Video nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs}/>
         <PlaylistButton playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} />
-        <Playlist nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} handlePlaylistItemClick= {this.handlePlaylistItemClick}/>
+        <Playlist isPlaying = {this.state.isPlaying} nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} handlePlaylistItemClick= {this.handlePlaylistItemClick}/>
       </div>
     )
   }
