@@ -10,6 +10,8 @@ import Playlist from './components/playlist';
 import PlaylistButton from './components/playlistButton';
 import Video from './components/video';
 import Song from './components/song';
+import Session_Song from './components/session_song';
+import Lyrics from './components/lyrics';
 
 
 //dummy data from js file
@@ -36,7 +38,8 @@ class App extends React.Component {
       //ajax of songs
       error: null,
       isLoaded: false,
-      songs: []
+      songs: [],
+      sSongs: []
 
     };
 
@@ -70,7 +73,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/songs")
+    fetch("http://localhost:3000/sessions_songs")
     const obj = this;
 
     var responseHandler = function() {
@@ -78,27 +81,32 @@ class App extends React.Component {
         // console.log("status text", this.statusText);
         // console.log("status code", this.status);
         const result = JSON.parse( this.responseText);
-        // console.log(result)
+        console.log("result", result);
 
         obj.setState({
             isLoaded: true,
-            songs: result.songs});
+            sSongs: result.sessions_songs}
+            );
+
+        console.log('after set state');
+
     };
 
     var request = new XMLHttpRequest();
 
     request.addEventListener("load", responseHandler);
 
-    request.open("GET", "http://localhost:3000/songs");
+    request.open("GET", "http://localhost:3000/sessions_songs");
 
     request.send();
   }
 
   render(){
-    // console.log("session songs")
-    // console.log(this.state.sessionSongs)
-    const { error, isLoaded, songs } = this.state;
+    console.log("session songs")
+    console.log(this.state.sSongs)
+    const { error, isLoaded, sSongs } = this.state;
     let songRender = "";
+    let lyricsRender = "";
 
     if (error) {
     songRender = (
@@ -123,9 +131,14 @@ class App extends React.Component {
 
 
     } else {
+         lyricsRender = (
+            <React.Fragment>
+                  <Lyrics session_song = {this.state.sSongs}/>
+            </React.Fragment>
+            )
         songRender = (
               <React.Fragment>
-                  <Song songs = {this.state.songs}/>
+                <Session_Song session_song={this.state.sSongs}/>
             </React.Fragment>
 
       );
@@ -144,6 +157,7 @@ class App extends React.Component {
         <Video nowPlaying={this.state.nowPlaying} />
         <PlaylistButton playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} />
         <Playlist nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} handlePlaylistItemClick= {this.handlePlaylistItemClick}/>
+        {lyricsRender}
       </div>
     )
   }
