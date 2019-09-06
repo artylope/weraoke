@@ -7,24 +7,15 @@ class PlaylistItem extends React.Component{
 
   render() {
 
+    let playlistItemClasses = "playlist-item";
 
-    let playlistItemClasses = "";
-
-    if(this.props.nowPlaying.name === this.props.song.name){
+    if (this.props.index === this.props.nowPlaying){
       playlistItemClasses = "playlist-item active"
-    } else if(this.props.nowPlaying.name != this.props.song.name && this.props.nowPlaying.order > this.props.song.order){
+    }else if(this.props.index < this.props.nowPlaying){
       playlistItemClasses = "playlist-item completed"
-    } else {
+    }else if(this.props.index > this.props.nowPlaying){
       playlistItemClasses = "playlist-item"
     }
-
-    // if (this.props.song.status === "playing"){
-    //   playlistItemClasses = "playlist-item active"
-    // }else if(this.props.song.status === "watched"){
-    //   playlistItemClasses = "playlist-item completed"
-    // }else if(this.props.song.status === "unwatched"){
-    //   playlistItemClasses = "playlist-item"
-    // }
 
     let duration = this.props.song.duration;
     duration = duration.replace('PT','')

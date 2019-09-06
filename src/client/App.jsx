@@ -31,9 +31,9 @@ class App extends React.Component {
 
       //current song info
       currentVideoDuration: "",
-      nowPlaying: sessionSongs[0],
-      prevSong: "",
-      nextSong: sessionSongs[1],
+      nowPlaying: 0,
+      isPlaying: true,
+
 
       //ajax of songs
       error: null,
@@ -65,7 +65,7 @@ class App extends React.Component {
   handlePlaylistItemClick(index, videoDuration){
     // console.log('clicked playlist ', index);
     // console.log('video duration ', videoDuration);
-    let selectedSong = this.state.sessionSongs[index];
+    let selectedSong = parseInt(index);
     this.setState({
       nowPlaying: selectedSong,
       // playlist: false
@@ -136,12 +136,12 @@ class App extends React.Component {
                   <Lyrics session_song = {this.state.sSongs}/>
             </React.Fragment>
             )
-        songRender = (
-              <React.Fragment>
-                <Session_Song session_song={this.state.sSongs}/>
-            </React.Fragment>
+          songRender = (
+                <React.Fragment>
+                  <Session_Song session_song={this.state.sSongs}/>
+              </React.Fragment>
 
-      );
+        );
 
     }
 
@@ -154,9 +154,9 @@ class App extends React.Component {
 
         {songRender}
         <Search/>
-        <Video nowPlaying={this.state.nowPlaying} />
+        <Video nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs}/>
         <PlaylistButton playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} />
-        <Playlist nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} handlePlaylistItemClick= {this.handlePlaylistItemClick}/>
+        <Playlist isPlaying = {this.state.isPlaying} nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} handlePlaylistItemClick= {this.handlePlaylistItemClick}/>
         {lyricsRender}
       </div>
     )
