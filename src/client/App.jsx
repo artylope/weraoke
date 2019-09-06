@@ -1,5 +1,7 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
+import YouTube from 'react-youtube';
+
 
 //components
 // import Nav from './components/nav';
@@ -8,7 +10,6 @@ import { hot } from 'react-hot-loader';
 import Search from './components/search';
 import Playlist from './components/playlist';
 import PlaylistButton from './components/playlistButton';
-import Video from './components/video';
 import Song from './components/song';
 import Session_Song from './components/session_song';
 import Lyrics from './components/lyrics';
@@ -70,10 +71,53 @@ class App extends React.Component {
       nowPlaying: selectedSong,
       // playlist: false
     })
+
+    this.calculateCurrentVideoDuration(index);
   }
 
+  calculateCurrentVideoDuration(id){
+    //calculate current video duration
+    console.log('in calculateCurrentVideoDuration', id);
+
+    let currentVideo = this.state.sessionSongs[id];
+    let duration = currentVideo.duration;
+    duration = duration.replace('PT','')
+    duration = duration.replace(/([^0-9])+/g, ",");
+    let durationArray = duration.split(',');
+
+    let songDurH, songDurM, songDurS, videoDurationInSecs;
+
+    if( durationArray.length === 4){
+      songDurH = parseInt(durationArray[0]);
+      songDurM = parseInt(durationArray[1]);
+      songDurS = parseInt(durationArray[2]);
+      videoDurationInSecs = ((songDurH*60) + songDurM)*60 + songDurS;
+    } else if( durationArray.length === 3){
+      songDurM = parseInt(durationArray[0]);
+      songDurS = parseInt(durationArray[1]);
+      videoDurationInSecs = (songDurM*60) + songDurS;
+    } else if(durationArray.length === 2){
+      songDurS = parseInt(durationArray[0]);
+      videoDurationInSecs = songDurS;
+    }
+
+    console.log("current video duration");
+    console.log(videoDurationInSecs);
+
+    this.setState({
+      currentVideoDuration: videoDurationInSecs
+    })
+
+  }
+
+
+
   componentDidMount() {
-    fetch("http://localhost:3000/sessions_songs")
+
+    console.log('component did mount');
+    this.calculateCurrentVideoDuration(this.state.nowPlaying);
+
+
     const obj = this;
 
     var responseHandler = function() {
@@ -99,6 +143,10 @@ class App extends React.Component {
     request.open("GET", "http://localhost:3000/sessions_songs");
 
     request.send();
+  }
+
+  componentWillUnmount() {
+    clearTimeout(timer);
   }
 
   render(){
@@ -145,18 +193,40 @@ class App extends React.Component {
 
     }
 
+    let allSongs = this.state.sessionSongs;
+    let currentSong = allSongs[this.state.nowPlaying];
+
+    const opts = {
+      height: '780',
+      width: '1280',
+      playerVars: { // https://developers.google.com/youtube/player_parameters
+        autoplay: 1
+      }
+    };
 
 
     return(
       <div>
-      <h1 className="logo">Weraoke</h1>
-        Lorem Ipsum
 
-        {songRender}
-        <Search/>
-        <Video nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs}/>
+
+
+        <YouTube
+        videoId={currentSong.video_link}
+        opts={opts}
+        onReady={this._onReady}
+        onEnd={()=>{
+          this.setState({
+            nowPlaying: (this.state.nowPlaying) + 1,
+          })
+        }}
+        />
         <PlaylistButton playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} />
         <Playlist isPlaying = {this.state.isPlaying} nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} handlePlaylistItemClick= {this.handlePlaylistItemClick}/>
+        Lorem Ipsum
+        <Search/>
+        <h1 className="logo">Weraoke</h1>
+        {songRender}
+
         {lyricsRender}
       </div>
     )
