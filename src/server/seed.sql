@@ -42,8 +42,17 @@ INSERT INTO sessions (session_name) VALUES ('chinese hits');
 INSERT INTO sessions (session_name) VALUES ('ost');
 
 INSERT INTO sessions_songs (session_id, song_id) VALUES (1,1);
-INSERT INTO sessions_songs (session_id, song_id) VALUES (1,12);
+INSERT INTO sessions_songs (session_id, song_id) VALUES (1,2);
+INSERT INTO sessions_songs (session_id, song_id) VALUES (1,3);
+INSERT INTO sessions_songs (session_id, song_id) VALUES (1,4);
 INSERT INTO sessions_songs (session_id, song_id) VALUES (1,5);
+INSERT INTO sessions_songs (session_id, song_id) VALUES (1,6);
+INSERT INTO sessions_songs (session_id, song_id) VALUES (1,7);
+INSERT INTO sessions_songs (session_id, song_id) VALUES (1,8);
+INSERT INTO sessions_songs (session_id, song_id) VALUES (1,9);
+INSERT INTO sessions_songs (session_id, song_id) VALUES (1,10);
+INSERT INTO sessions_songs (session_id, song_id) VALUES (1,11);
+INSERT INTO sessions_songs (session_id, song_id) VALUES (1,12);
 INSERT INTO sessions_songs (session_id, song_id) VALUES (2,8);
 INSERT INTO sessions_songs (session_id, song_id) VALUES (2,9);
 INSERT INTO sessions_songs (session_id, song_id) VALUES (2,7);
