@@ -1,9 +1,9 @@
 module.exports = (db) => {
 
 
-  let getAll = (request, response) => {
+  let getBySessionId = (request, response) => {
 
-    db.sessions_songs.getAll((error, sessions_songs) => {
+    db.sessions_songs.getBySessionId((error, sessions_songs) => {
 
       if (error) {
         console.error('error getting session songs', error);
@@ -19,6 +19,6 @@ module.exports = (db) => {
 
 
   return {
-    getAll
+    getBySessionId: getBySessionId
   };
 };

@@ -4,7 +4,6 @@ import { hot } from 'react-hot-loader';
 
 import Song from './components/song';
 
-
 class App extends React.Component {
   constructor() {
     super();

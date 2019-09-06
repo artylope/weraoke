@@ -3,7 +3,7 @@ module.exports = (app, db) => {
   const sessions_songs = require('./controllers/sessions_songs')(db)
 
   app.get('/songs', songs.getAll);
-  app.get('/sessions_songs', sessions_songs.getAll);
+  app.get('/sessions_songs', sessions_songs.getBySessionId);
   //app.post('/newproduct', Songs.newProduct);
 
   // const sessions = require()
