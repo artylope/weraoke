@@ -48,7 +48,8 @@ class App extends React.Component {
     console.log('video duration ', videoDuration);
     let selectedSong = this.state.sessionSongs[index];
     this.setState({
-      nowPlaying: selectedSong
+      nowPlaying: selectedSong,
+      playlist: false
     })
   }
 
