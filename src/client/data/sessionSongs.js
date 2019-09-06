@@ -51,7 +51,7 @@ const sessionSongs = [
         "name": "Baby One More Time",
         "artist": "Britney Spears",
         "video_link": "C-u5WLJ9Yk4",
-        "duration": "PT3M3S",
+        "duration": "PT1M3S",
         "order": 7,
         "status": "unwatched"
     },
@@ -59,7 +59,7 @@ const sessionSongs = [
         "name": "屋顶",
         "artist": "吴宗宪 & 温岚",
         "video_link": "hBQ7zeX_GRA",
-        "duration": "PT3M52S",
+        "duration": "PT3M2S",
         "order": 8,
         "status": "unwatched"
     },
@@ -75,7 +75,7 @@ const sessionSongs = [
         "name": "Bye Bye Bye",
         "artist": "*NSYNC",
         "video_link": "Eo-KmOd3i7s",
-        "duration": "PT4M10S",
+        "duration": "PT31M25S",
         "order": 10,
         "status": "unwatched"
     },

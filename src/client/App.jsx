@@ -17,7 +17,11 @@ class App extends React.Component {
     this.state = {
       playlist: true,
       sessionSongs: sessionSongs,
-      nowPlaying: sessionSongs[0]
+      currentVideoDuration: "",
+      nowPlaying: sessionSongs[0],
+      prevSong: "",
+      nextSong: sessionSongs[1]
+
     };
 
 

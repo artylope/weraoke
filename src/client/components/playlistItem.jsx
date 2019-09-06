@@ -21,44 +21,30 @@ class PlaylistItem extends React.Component{
     duration = duration.replace(/([^0-9])+/g, ",");
     let durationArray = duration.split(',');
 
-    let songDurH, songDurM, songDurS, videoDurationInSecs;
+    let songDurH, songDurM, songDurS, songDurDisplay, videoDurationInSecs;
 
     if( durationArray.length === 4){
       songDurH = parseInt(durationArray[0]);
       songDurM = parseInt(durationArray[1]);
       songDurS = parseInt(durationArray[2]);
       videoDurationInSecs = ((songDurH*60) + songDurM)*60 + songDurS;
+      songDurDisplay = `${songDurH.toString()}:${songDurM.toString().padStart(2, '0')}:${songDurS.toString().padStart(2, '0')}`;
     } else if( durationArray.length === 3){
       songDurM = parseInt(durationArray[0]);
       songDurS = parseInt(durationArray[1]);
+      songDurDisplay = `${songDurM.toString()}:${songDurS.toString().padStart(2, '0')}`;
       videoDurationInSecs = (songDurM*60) + songDurS;
     } else if(durationArray.length === 2){
       songDurS = parseInt(durationArray[0]);
       videoDurationInSecs = songDurS;
+      songDurDisplay = `0:${songDurS.toString().padStart(2, '0')}`;
     }
 
     console.log(songDurH);
     console.log(songDurM);
     console.log(songDurS);
-
-    let songDurDisplay;
-
-    if(songDurH === undefined && songDurM > 0){
-      songDurDisplay = `${songDurM.toString()}:${songDurS.toString().padStart(2, '0')}`
-    } else if(songDurH === undefined && songDurM === undefined){
-      songDurDisplay = `${songDurS.toString()}`
-    } else {
-      songDurDisplay = `${songDurH.toString()}:${songDurM.toString().padStart(2, '0')}:${songDurS.toString().padStart(2, '0')}`
-    }
-
     console.log(songDurDisplay);
-
     console.log('videoDurationInSecs ', videoDurationInSecs)
-
-
-
-
-
 
      return (
         <div className={playlistItemClasses} onClick={()=>{this.props.handlePlaylistItemClick(this.props.index, videoDurationInSecs )}}>
