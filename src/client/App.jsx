@@ -28,6 +28,7 @@ class App extends React.Component {
 
       //data stuff
       sessionSongs: sessionSongs,
+      sSongs: [],
       songs: [],
 
       //playlist UI stuff
@@ -93,7 +94,7 @@ class App extends React.Component {
                //
                this.setState({
                  songs : result[0].songs,
-                 // sessionSongs : result[1]
+                 sSongs : result[1].sessions_songs
                });
 
             })
