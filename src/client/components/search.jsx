@@ -5,6 +5,20 @@ import PropTypes from 'prop-types';
 
 class Search extends React.Component{
 
+  constructor(props) {
+      super(props);
+
+      this.state = {
+          searchTerm: ""
+      };
+
+      this.handleSearchInput = this.handleSearchInput.bind(this);
+  }
+
+
+  handleSearchInput(searchTerm){
+    console.log(searchTerm);
+  }
 
   render() {
 
@@ -37,8 +51,8 @@ class Search extends React.Component{
               </div>
           </div>
 
-          <i className='bx bx-search-alt'></i>
-          <input/>
+          <i className='bx bx-search-alt' ></i>
+          <input onChange={(event) => this.handleSearchInput(event.target.value)}/>
             <div class="all-songs">
               {songItems}
             </div>
