@@ -91,10 +91,10 @@ class App extends React.Component {
                console.log(result[0].songs);
                console.log(result[1].sessions_songs);
                //
-               // this.setState({
-               //   songs : result[0].songs,
-               //   sessionSongs : result[1].sessions_songs
-               // });
+               this.setState({
+                 songs : result[0].songs,
+                 // sessionSongs : result[1]
+               });
 
             })
             .catch((err) => {
@@ -142,7 +142,7 @@ class App extends React.Component {
         <PlaylistButton playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} />
         <Playlist isPlaying = {this.state.isPlaying} nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} handlePlaylistItemClick= {this.handlePlaylistItemClick}/>
         Lorem Ipsum
-        <Search/>
+        <Search songs = {this.state.songs}/>
         <h1 className="logo">Weraoke</h1>
       </div>
     )
