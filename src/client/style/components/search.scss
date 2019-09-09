@@ -2,11 +2,29 @@
   background-color: $body-bg-light;
   position: absolute;
   color: $body-text;
-  top: 0;
-  left: 0 ;
   width: 600px;
   height: 100%;
   padding: 30px;
+  top: 0;
+  left: 0;
+  transition: .2s ease-in-out;
+
+  .search-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .search-panel-hide{
+      i{
+        font-size: 30px;
+      }
+    }
+  }
+
+  input{
+    padding: 10px;
+  }
 
 
   .all-songs{
@@ -24,5 +42,32 @@
         margin-left: 30px;
       }
     }
+  }
+
+  &.show{
+    top: 0;
+    left: 0;
+  }
+
+  &.hide{
+    top: 0;
+    left: -600px ;
+  }
+}
+
+.search-panel-button-wrapper{
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+
+.search-panel-button{
+  &.show{
+    visibility: visible;
+  }
+
+  &.hide{
+    visibility: hidden;
   }
 }

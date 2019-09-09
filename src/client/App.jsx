@@ -8,6 +8,7 @@ import YouTube from 'react-youtube';
 // import Playlist from './components/playlist';
 // import Player from './components/player';
 import Search from './components/search';
+import SearchPanelButton from './components/searchPanelButton';
 import Playlist from './components/playlist';
 import PlaylistButton from './components/playlistButton';
 import Song from './components/song';
@@ -34,8 +35,9 @@ class App extends React.Component {
       sessionSongs: [],
       allSongs: [],
 
-      //playlist UI stuff
+      //UI stuff
       playlist: true,
+      searchPanel: true,
 
       //current song info
       nowPlaying: 0,
@@ -48,6 +50,7 @@ class App extends React.Component {
 
     this.handlePlaylistShowHide = this.handlePlaylistShowHide.bind(this);
     this.handlePlaylistItemClick = this.handlePlaylistItemClick.bind(this);
+    this.handleSearchPanelShowHide = this.handleSearchPanelShowHide.bind(this);
   }
 
   handlePlaylistShowHide(state){
@@ -64,7 +67,7 @@ class App extends React.Component {
     }
   }
 
-  handlePlaylistItemClick(index, videoDuration){
+  handlePlaylistItemClick(index){
     // console.log('clicked playlist ', index);
     // console.log('video duration ', videoDuration);
     let selectedSong = parseInt(index);
@@ -73,6 +76,20 @@ class App extends React.Component {
       // playlist: false
     })
 
+  }
+
+  handleSearchPanelShowHide(state){
+    console.log('clicked');
+    console.log(state);
+    if(state === true){
+      this.setState({
+        searchPanel: false
+      })
+    } else if(state === false){
+      this.setState({
+        searchPanel: true
+      })
+    }
   }
 
 
@@ -153,7 +170,8 @@ class App extends React.Component {
         <PlaylistButton playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} />
         <Playlist isPlaying = {this.state.isPlaying} nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} handlePlaylistItemClick= {this.handlePlaylistItemClick}/>
         Lorem Ipsum
-        <Search allSongs = {this.state.allSongs}/>
+        <Search handleSearchPanelShowHide = {this.handleSearchPanelShowHide} searchPanel={this.state.searchPanel} allSongs = {this.state.allSongs}/>
+        <SearchPanelButton handleSearchPanelShowHide= {this.handleSearchPanelShowHide} searchPanel={this.state.searchPanel} />
         <h1 className="logo">Weraoke</h1>
       </div>
     )
