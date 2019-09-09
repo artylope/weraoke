@@ -11,19 +11,20 @@ class Search extends React.Component{
 
     let songItems = this.props.allSongs.map( (song, index) => {
       return(
-        <div key={index}>
-          <p>{song.song_name}</p>
+        <div className="each-song" key={index}>
+          <p>{song.song_name},{song.artist_id}</p>
+          <a>Add</a>
         </div>
       )
     });
 
      return (
         <div className="search">
-        <i className='bx bx-search-alt'></i>
-        <input/>
-          <div>
-            {songItems}
-          </div>
+          <i className='bx bx-search-alt'></i>
+          <input/>
+            <div class="all-songs">
+              {songItems}
+            </div>
         </div>
 
     );

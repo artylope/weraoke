@@ -206,3 +206,24 @@ button {
     visibility: visible; }
   .playlist-button.hide {
     visibility: hidden; }
+
+.search {
+  background-color: #262639;
+  position: absolute;
+  color: #666680;
+  top: 0;
+  left: 0;
+  width: 600px;
+  height: 100%;
+  padding: 30px; }
+  .search .all-songs {
+    margin-top: 50px;
+    margin-bottom: 50px; }
+    .search .all-songs .each-song {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center; }
+      .search .all-songs .each-song a {
+        margin-left: 30px; }
