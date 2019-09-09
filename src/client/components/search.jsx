@@ -27,11 +27,14 @@ class Search extends React.Component{
     console.log(searchTerm)
     searchTerm = searchTerm.toLowerCase();
 
-    var searchResults =  allSongs.filter(function(song) {
-    	return song.song_name.toLowerCase().includes(searchTerm);
+    var searchResults =  allSongs.filter( function(song) {
+      if( song.song_name.toLowerCase().includes(searchTerm) || song.artist_name.toLowerCase().includes(searchTerm)){
+        return song;
+      }
     });
 
     console.log(searchResults);
+    
     this.setState({
       searchResults: searchResults
     })
@@ -40,7 +43,7 @@ class Search extends React.Component{
   render() {
 
     let eachSongClasses = 'each-song';
-    
+
 
     let songItems = this.props.allSongs.map( (song, index) => {
       return(
