@@ -11,7 +11,7 @@ class Search extends React.Component{
 
     let songItems = this.props.songs.map( (song, index) => {
       return(
-        <div>
+        <div key={index}>
           <p>{song.song_name}</p>
         </div>
       )

@@ -52,7 +52,7 @@ class PlaylistItem extends React.Component{
     // console.log('videoDurationInSecs ', videoDurationInSecs)
 
      return (
-        <div className={playlistItemClasses} onClick={()=>{this.props.handlePlaylistItemClick(this.props.index, videoDurationInSecs )}}>
+        <div className={playlistItemClasses} onClick={()=>{this.props.handlePlaylistItemClick(this.props.index)}}>
             <div className="playlist-item-order">{(this.props.index) + 1 }</div>
             <div className="playlist-item-content">
                 <div className="song-info"><p>{this.props.song.song_name}</p> <p>{songDurDisplay}</p></div>
