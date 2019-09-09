@@ -12,6 +12,7 @@ import Video from './components/video';
 import Song from './components/song';
 import Session_Song from './components/session_song';
 import Lyrics from './components/lyrics';
+import Form from './components/form'
 
 
 //dummy data from js file
@@ -73,7 +74,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/sessions_songs")
+    //fetch("http://localhost:3000/sessions/"+input)
     const obj = this;
 
     var responseHandler = function() {
@@ -96,7 +97,7 @@ class App extends React.Component {
 
     request.addEventListener("load", responseHandler);
 
-    request.open("GET", "http://localhost:3000/sessions_songs");
+    request.open("GET", "http://localhost:3000/api/sessions/1");
 
     request.send();
   }
@@ -151,7 +152,7 @@ class App extends React.Component {
       <div>
       <h1 className="logo">Weraoke</h1>
         Lorem Ipsum
-
+        <Form/>
         {songRender}
         <Search/>
         <Video nowPlaying={this.state.nowPlaying} />

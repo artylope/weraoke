@@ -18,7 +18,8 @@ class Form extends React.Component {
     }
 
     submitHandler = e => {
-
+        e.preventDefault()
+        console.log(this.state)
 
     }
 
@@ -47,13 +48,8 @@ class Form extends React.Component {
                 </form>
             </div>
         )
-        )
-    return (
-      <div>
-        {songlyrics}
-      </div>
-    );
-  }
+    }
 }
+
 
 export default Form;
