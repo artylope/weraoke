@@ -135,12 +135,12 @@ class App extends React.Component {
                console.log("multiple fetch");
                console.log(result[0]);
                console.log(result[1]);
-
+               //
                // this.setState({
-               //   songs : result[0],
-               //   sessionSongs : result[1]
-               // })
-              //json response
+               //   songs : result[0].songs,
+               //   sessionSongs : result[1].sessions_songs
+               // });
+
             })
             .catch((err) => {
                 console.log(err);
