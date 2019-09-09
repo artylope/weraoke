@@ -1,0 +1,56 @@
+.search{
+  background-color: $body-bg-light;
+  position: absolute;
+  color: $body-text;
+  width: 600px;
+  height: 100%;
+  padding: 30px;
+  top: 0;
+  left: 0;
+  transition: .2s ease-in-out;
+
+  .search-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .search-panel-hide{
+      i{
+        font-size: 30px;
+      }
+    }
+  }
+
+  input{
+    padding: 10px;
+  }
+
+
+  .all-songs{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    .each-song{
+      margin-bottom: 20px;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      a{
+        margin-left: 30px;
+      }
+    }
+  }
+
+  &.show{
+    top: 0;
+    left: 0;
+  }
+
+  &.hide{
+    top: 0;
+    left: -600px ;
+  }
+}
