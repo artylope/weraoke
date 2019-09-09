@@ -14,7 +14,7 @@ import PlaylistButton from './components/playlistButton';
 import Song from './components/song';
 import Session_Song from './components/session_song';
 import Lyrics from './components/lyrics';
-import Form from './components/form';
+// import Form from './components/form';
 
 
 class App extends React.Component {
@@ -94,7 +94,7 @@ class App extends React.Component {
   }
 
 
-  componentDidMount() {
+  componentDidMount(){
 
     console.log('component did mount');
 
@@ -124,11 +124,9 @@ class App extends React.Component {
                 console.log(err);
             });
 
+    }
 
-  }
-
-
-
+  render(){
 
     let sessionSongs = this.state.sessionSongs;
 
@@ -150,8 +148,6 @@ class App extends React.Component {
         modestbranding: 1
       }
     };
-
-
 
     return(
       <div>
@@ -179,10 +175,6 @@ class App extends React.Component {
       </div>
     )
   }
-
-
-
-
 
 }
 
