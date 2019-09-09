@@ -22,7 +22,7 @@ class App extends React.Component {
     super();
     this.state = {
 
-      sessionId : 3,
+      sessionId : 4,
 
       //data stuff
       preloadSong: {
@@ -43,9 +43,6 @@ class App extends React.Component {
       //current song info
       nowPlaying: 0,
       isPlaying: true,
-
-
-
     };
 
 
@@ -115,14 +112,13 @@ class App extends React.Component {
     .then( (response) => {
        //do something awesome that makes the world a better place
        console.log('done');
+       console.log('response', response);
+       this.loadData();
     });
   }
 
-  componentDidMount(){
 
-    console.log('component did mount');
-
-
+  loadData(){
     //multiple fetch API
     let allSongsUrl = 'http://localhost:3000/api/songs';
     // let allArtistsUrl = 'http://localhost:3000/artists';
@@ -147,6 +143,13 @@ class App extends React.Component {
             .catch((err) => {
                 console.log(err);
             });
+  }
+
+
+  componentDidMount(){
+
+    console.log('component did mount');
+    this.loadData();
 
     }
 
