@@ -56,6 +56,7 @@ module.exports = (dbPoolInstance) => {
     let addSongsToPlaylist = (data, callback) => {
 
         console.log('in model');
+        //data is request.body in controller
         console.log('data', data)
         // let session_id = (request.params.id);
         let songId = (data.song_id);
@@ -81,7 +82,8 @@ module.exports = (dbPoolInstance) => {
 
     let removeSongsFromPlaylist  = (data, callback) => {
 
-        let session_song_id = (data.session_song_id)
+        let session_song_id = (data.sessions_songs.id)
+        console.log('id to delete is ', session_song_id)
 
         const queryString = "delete from sessions_songs where id="+session_song_id;
 
