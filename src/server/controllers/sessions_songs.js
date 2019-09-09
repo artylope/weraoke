@@ -59,10 +59,27 @@ module.exports = (db) => {
 
     }
 
+    let removeSongsFromPlaylist = (request, response) => {
+        let session_song_id = request.body;
+         db.sessions_songs.removeSongsFromPlaylist(session_id,(error, sessions_songs) => {
+
+            if (error) {
+                console.error('error adding songs', error);
+                response.status(500);
+                response.send('server error');
+            } else {
+                response.send({sessions_songs: sessions_songs});
+            }
+        });
+
+    }
+
+
     return {
         getAll: getAll,
         getById: getById,
         //createNew: createNew,
         addSongsToPlaylist: addSongsToPlaylist,
+        removeSongsFromPlaylist: removeSongsFromPlaylist,
     };
 };

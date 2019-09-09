@@ -21,7 +21,7 @@ module.exports = (dbPoolInstance) => {
 
         let arr = [id];
 
-        const queryString = "select songs.song_name, songs.video_link, songs.lyrics, artists.artist_name, sessions.session_name from sessions_songs inner join songs on (sessions_songs.song_id = songs.id) inner join artists on (artists.id = songs.artist_id) inner join sessions on (sessions_songs.session_id = sessions.id) where sessions.id=($1)";
+        const queryString = "select sessions_songs.id, songs.song_name, songs.video_link, songs.lyrics, artists.artist_name, sessions.session_name from sessions_songs inner join songs on (sessions_songs.song_id = songs.id) inner join artists on (artists.id = songs.artist_id) inner join sessions on (sessions_songs.session_id = sessions.id) where sessions.id=($1) order by sessions_songs.id";
 
         dbPoolInstance.query(queryString, arr, (error, queryResult) => {
             if (error) {
@@ -73,10 +73,29 @@ module.exports = (dbPoolInstance) => {
         });
     };
 
+    let removeSongsFromPlaylist  = (data, callback) => {
+
+        let session_song_id = (data.session_song_id)
+
+        const queryString = "delete from sessions_songs where id="+session_song_id;
+
+        dbPoolInstance.query(queryString, values, (error, queryResult) => {
+            if (error) {
+                // invoke callback function with results after query has executed
+                callback(error, null);
+            } else {
+                // invoke callback function with results after query has executed
+
+            callback(null, queryResult.rows );
+            }
+        });
+    };
+
     return {
         getAll,
         getById,
         //createNew,
         addSongsToPlaylist,
+        removeSongsFromPlaylist,
     };
 };
