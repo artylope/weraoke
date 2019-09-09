@@ -178,7 +178,7 @@ class App extends React.Component {
 
     return(
       <div>
-
+        <h1 className="logo">Weraoke</h1>
 
         <div className="video-panel">
           <YouTube
@@ -195,10 +195,9 @@ class App extends React.Component {
 
         <PlaylistButton playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} />
         <Playlist isPlaying = {this.state.isPlaying} nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} handlePlaylistItemClick= {this.handlePlaylistItemClick}/>
-        Lorem Ipsum
         <SearchPanelButton handleSearchPanelShowHide= {this.handleSearchPanelShowHide} searchPanel={this.state.searchPanel} />
         <Search sessionSongs= {this.state.sessionSongs} handleSearchPanelShowHide = {this.handleSearchPanelShowHide} searchPanel={this.state.searchPanel} allSongs = {this.state.allSongs} handleAddSongToPlaylist = {this.handleAddSongToPlaylist}/>
-        <h1 className="logo">Weraoke</h1>
+
       </div>
     )
   }
