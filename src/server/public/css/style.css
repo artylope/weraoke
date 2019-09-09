@@ -246,11 +246,28 @@ button {
 
 .search-panel-button-wrapper {
   position: absolute;
-  top: 0;
-  left: 0; }
+  left: 20px;
+  top: 20px; }
 
-.search-panel-button.show {
-  visibility: visible; }
+.search-panel-button {
+  border-radius: 50%;
+  padding: 15px;
+  color: #1b1b28;
+  background: #666680;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .search-panel-button i {
+    font-size: 24px; }
+  .search-panel-button.show {
+    visibility: visible; }
+  .search-panel-button.hide {
+    visibility: hidden; }
 
-.search-panel-button.hide {
-  visibility: hidden; }
+.video-panel {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; }

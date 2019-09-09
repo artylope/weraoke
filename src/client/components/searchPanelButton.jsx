@@ -17,7 +17,7 @@ class SearchPanelButton extends React.Component{
     return(
       <div className="search-panel-button-wrapper">
         <div className={searchPanelButtonClasses} onClick={()=>this.props.handleSearchPanelShowHide(this.props.searchPanel)}>
-          <i className='bx bxs-search' ></i>
+          <i className='bx bx-search-alt'></i>
         </div>
       </div>
     )

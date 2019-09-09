@@ -139,10 +139,11 @@ class App extends React.Component {
       currentSong = this.state.sessionSongs[this.state.nowPlaying];
     }
 
-
+    //1280 x 780
+    //960 x 585
     const opts = {
-      height: '585',
-      width: '960',
+      height: '780',
+      width: '1280',
       playerVars: { // https://developers.google.com/youtube/player_parameters
         autoplay: 1,
         controls: 0,
@@ -156,17 +157,19 @@ class App extends React.Component {
       <div>
 
 
+        <div className="video-panel">
+          <YouTube
+          videoId={currentSong.video_link}
+          opts={opts}
+          onReady={this._onReady}
+          onEnd={()=>{
+            this.setState({
+              nowPlaying: (this.state.nowPlaying) + 1,
+            })
+          }}
+          />
+        </div>
 
-        <YouTube
-        videoId={currentSong.video_link}
-        opts={opts}
-        onReady={this._onReady}
-        onEnd={()=>{
-          this.setState({
-            nowPlaying: (this.state.nowPlaying) + 1,
-          })
-        }}
-        />
         <PlaylistButton playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} />
         <Playlist isPlaying = {this.state.isPlaying} nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} handlePlaylistItemClick= {this.handlePlaylistItemClick}/>
         Lorem Ipsum

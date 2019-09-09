@@ -54,20 +54,3 @@
     left: -600px ;
   }
 }
-
-.search-panel-button-wrapper{
-  position: absolute;
-  top: 0;
-  left: 0;
-
-}
-
-.search-panel-button{
-  &.show{
-    visibility: visible;
-  }
-
-  &.hide{
-    visibility: hidden;
-  }
-}
