@@ -6,8 +6,8 @@ module.exports = (app, db) => {
   app.get('/api/sessions', sessions_songs.getAll);
   app.get('/api/sessions/:id', sessions_songs.getById);
   //app.get('/api/sessions/:name', sessions_songs.getByName);
-  // app.post('/api/sessions/new', sessions.createNew);
-  // app.put('/api/sessions/:id', sessions.edit);
+  //app.post('/api/sessions/new', sessions.createNew);
+  app.post('/api/sessions/:id/new', sessions_songs.addSongsToPlaylist);
 
   app.get('/api/artists', artists.getAll);
   app.get('/api/artists/:id', artists.getById);

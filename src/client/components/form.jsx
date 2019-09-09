@@ -13,12 +13,21 @@ class Form extends React.Component {
 
     }
 
-    changeHandler = e => {
-        this.setState({[e.target.name]: e.target.value })
+    changeHandler(event) {
+        this.setState({[event.target.name]: event.target.value })
+        console.log(this.state.playlist)
     }
 
-    submitHandler = e => {
-
+    submitHandler(event) {
+        event.preventDefault()
+        console.log(this.state)
+        axios.post('"http://localhost:3000/api/sessions/', this.state)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
 
     }
 
@@ -47,13 +56,8 @@ class Form extends React.Component {
                 </form>
             </div>
         )
-        )
-    return (
-      <div>
-        {songlyrics}
-      </div>
-    );
-  }
+    }
 }
+
 
 export default Form;

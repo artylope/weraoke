@@ -14,6 +14,7 @@ import PlaylistButton from './components/playlistButton';
 import Song from './components/song';
 import Session_Song from './components/session_song';
 import Lyrics from './components/lyrics';
+import Form from './components/form';
 
 
 class App extends React.Component {
@@ -127,7 +128,6 @@ class App extends React.Component {
   }
 
 
-  render(){
 
 
     let sessionSongs = this.state.sessionSongs;
