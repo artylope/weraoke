@@ -27,6 +27,14 @@ class App extends React.Component {
       sessionId : 1,
 
       //data stuff
+      preloadSong: {
+        "name": "Just The Way You Are",
+        "artist": "Bruno Mars",
+        "video_link": "LjhCEhWiKXk",
+        "duration": "PT3S",
+        "order": 1,
+        "status": "watched"
+      },
       sessionSongs: sessionSongs,
       sSongs: [],
       songs: [],
@@ -110,8 +118,15 @@ class App extends React.Component {
   render(){
 
 
-    let allSongs = this.state.sessionSongs;
-    let currentSong = allSongs[this.state.nowPlaying];
+    let allSongs = this.state.sSongs;
+
+    let currentSong;
+    if (allSongs.length === 0){
+      currentSong = this.state.preloadSong;
+    } else if (allSongs.length > 0) {
+      currentSong = this.state.sSongs[this.state.nowPlaying];
+    }
+
 
     const opts = {
       height: '585',
@@ -122,6 +137,7 @@ class App extends React.Component {
         modestbranding: 1
       }
     };
+
 
 
     return(
