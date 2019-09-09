@@ -83,6 +83,7 @@ class App extends React.Component {
     // let allArtistsUrl = 'http://localhost:3000/artists';
     let thisSessionSongsUrl = 'http://localhost:3000/api/sessions/' + this.state.sessionId;
 
+
     Promise.all([
             fetch(allSongsUrl).then(allSongs => allSongs.json()),
             fetch(thisSessionSongsUrl).then(allSessionSongs => allSessionSongs.json())
@@ -105,8 +106,6 @@ class App extends React.Component {
 
   }
 
-  componentWillUnmount() {
-  }
 
   render(){
 
@@ -141,7 +140,7 @@ class App extends React.Component {
         }}
         />
         <PlaylistButton playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} />
-        <Playlist isPlaying = {this.state.isPlaying} nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} handlePlaylistItemClick= {this.handlePlaylistItemClick}/>
+        <Playlist isPlaying = {this.state.isPlaying} nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} handlePlaylistItemClick= {this.handlePlaylistItemClick}/>
         Lorem Ipsum
         <Search songs = {this.state.songs}/>
         <h1 className="logo">Weraoke</h1>
