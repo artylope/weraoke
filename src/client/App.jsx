@@ -15,10 +15,6 @@ import Session_Song from './components/session_song';
 import Lyrics from './components/lyrics';
 
 
-//dummy data from js file
-import sessionSongs from './data/sessionSongs.js';
-
-
 class App extends React.Component {
   constructor() {
     super();
@@ -35,9 +31,8 @@ class App extends React.Component {
         "order": 1,
         "status": "watched"
       },
-      sessionSongs: sessionSongs,
-      sSongs: [],
-      songs: [],
+      sessionSongs: [],
+      allSongs: [],
 
       //playlist UI stuff
       playlist: true,
@@ -102,8 +97,8 @@ class App extends React.Component {
                console.log(result[1].sessions_songs);
                //
                this.setState({
-                 songs : result[0].songs,
-                 sSongs : result[1].sessions_songs
+                 allSongs : result[0].songs,
+                 sessionSongs : result[1].sessions_songs
                });
 
             })
@@ -118,13 +113,13 @@ class App extends React.Component {
   render(){
 
 
-    let allSongs = this.state.sSongs;
+    let sessionSongs = this.state.sessionSongs;
 
     let currentSong;
-    if (allSongs.length === 0){
+    if (sessionSongs.length === 0){
       currentSong = this.state.preloadSong;
-    } else if (allSongs.length > 0) {
-      currentSong = this.state.sSongs[this.state.nowPlaying];
+    } else if (sessionSongs.length > 0) {
+      currentSong = this.state.sessionSongs[this.state.nowPlaying];
     }
 
 
@@ -156,9 +151,9 @@ class App extends React.Component {
         }}
         />
         <PlaylistButton playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} />
-        <Playlist isPlaying = {this.state.isPlaying} nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} handlePlaylistItemClick= {this.handlePlaylistItemClick}/>
+        <Playlist isPlaying = {this.state.isPlaying} nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} handlePlaylistItemClick= {this.handlePlaylistItemClick}/>
         Lorem Ipsum
-        <Search songs = {this.state.songs}/>
+        <Search allSongs = {this.state.allSongs}/>
         <h1 className="logo">Weraoke</h1>
       </div>
     )
