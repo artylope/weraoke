@@ -12,7 +12,7 @@ import Video from './components/video';
 import Song from './components/song';
 import Session_Song from './components/session_song';
 import Lyrics from './components/lyrics';
-import Form from './components/form'
+import Form from './components/form';
 
 
 //dummy data from js file
@@ -113,10 +113,6 @@ class App extends React.Component {
     songRender = (
             <React.Fragment>
                 <div>Error: {error.message}</div>
-                <Song
-                      products = {products}
-                      error={error}
-                      isLoaded={isLoaded}/>
 
             </React.Fragment>
         );

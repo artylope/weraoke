@@ -8,7 +8,9 @@ module.exports = (dbPoolInstance) => {
 
     let getAll = (callback) => {
 
-        dbPoolInstance.query('SELECT * from songs', (error, queryResult) => {
+         const queryString = "select songs.song_name, artists.artist_name, artists.image_link, songs.video_link, songs.lyrics from songs inner join artists on (songs.artist_id = artists.id) order by artist_id";
+
+        dbPoolInstance.query(queryString, (error, queryResult) => {
             if (error) {
                 // invoke callback function with results after query has executed
                 callback(error, null);
@@ -22,7 +24,7 @@ module.exports = (dbPoolInstance) => {
 
     let getById = (id, callback) => {
 
-        const queryString = "SELECT * from songs WHERE songs.id=($1)"
+        const queryString = "select songs.song_name, artists.artist_name, artists.image_link, songs.video_link, songs.lyrics from songs inner join artists on (songs.artist_id = artists.id) WHERE songs.id=($1)"
         let arr = [id]
 
         dbPoolInstance.query(queryString, arr, (error, queryResult) => {
