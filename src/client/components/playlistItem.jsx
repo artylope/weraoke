@@ -17,7 +17,11 @@ class PlaylistItem extends React.Component{
       playlistItemClasses = "playlist-item"
     }
 
-    let duration = this.props.song.duration;
+    // let duration = this.props.song.duration;
+    // should call the youtube api to get the duration
+    //for now like that, dummy data.
+    let duration = "PT2M34S";
+
     duration = duration.replace('PT','')
     duration = duration.replace(/([^0-9])+/g, ",");
     let durationArray = duration.split(',');
@@ -48,11 +52,11 @@ class PlaylistItem extends React.Component{
     // console.log('videoDurationInSecs ', videoDurationInSecs)
 
      return (
-        <div className={playlistItemClasses} onClick={()=>{this.props.handlePlaylistItemClick(this.props.index, videoDurationInSecs )}}>
-            <div className="playlist-item-order">{this.props.song.order}</div>
+        <div className={playlistItemClasses} onClick={()=>{this.props.handlePlaylistItemClick(this.props.index)}}>
+            <div className="playlist-item-order">{(this.props.index) + 1 }</div>
             <div className="playlist-item-content">
-                <div className="song-info"><p>{this.props.song.name}</p> <p>{songDurDisplay}</p></div>
-                <div className="song-artist"><p>{this.props.song.artist}</p></div>
+                <div className="song-info"><p>{this.props.song.song_name}</p> <p>{songDurDisplay}</p></div>
+                <div className="song-artist"><p>{this.props.song.artist_name}</p></div>
             </div>
         </div>
 
