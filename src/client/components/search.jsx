@@ -14,7 +14,7 @@ class Search extends React.Component{
     let songItems = this.props.allSongs.map( (song, index) => {
       return(
         <div className={eachSongClasses} key={index} onClick={()=>{this.props.handleAddSongToPlaylist(song.id)}}>
-          <p>{song.id}.{song.song_name},{song.artist_name}</p>
+          <p>{song.song_name},{song.artist_name}</p>
           <a>Add</a>
         </div>
       )
