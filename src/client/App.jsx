@@ -24,7 +24,7 @@ class App extends React.Component {
     super();
     this.state = {
 
-      sessionId : 0,
+      sessionId : 1,
 
       songs: [],
 
@@ -123,9 +123,9 @@ class App extends React.Component {
 
 
     //multiple fetch API
-    let allSongsUrl = 'http://localhost:3000/songs';
+    let allSongsUrl = 'http://localhost:3000/api/songs';
     // let allArtistsUrl = 'http://localhost:3000/artists';
-    let thisSessionSongsUrl = 'http://localhost:3000/sessions_songs';
+    let thisSessionSongsUrl = 'http://localhost:3000/api/sessions/' + this.state.sessionId;
 
     Promise.all([
             fetch(allSongsUrl).then(allSongs => allSongs.json()),
@@ -145,7 +145,7 @@ class App extends React.Component {
             .catch((err) => {
                 console.log(err);
             });
-            
+
 
   }
 
