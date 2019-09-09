@@ -35,16 +35,13 @@ class App extends React.Component {
       sessionSongs: sessionSongs,
 
       //current song info
-      currentVideoDuration: "",
       nowPlaying: 0,
       isPlaying: true,
 
 
       //ajax of songs
-      error: null,
-      isLoaded: false,
       songs: [],
-      sSongs: []
+
 
     };
 
@@ -76,50 +73,12 @@ class App extends React.Component {
       // playlist: false
     })
 
-    this.calculateCurrentVideoDuration(index);
   }
-
-  calculateCurrentVideoDuration(id){
-    //calculate current video duration
-    console.log('in calculateCurrentVideoDuration', id);
-
-    let currentVideo = this.state.sessionSongs[id];
-    let duration = currentVideo.duration;
-    duration = duration.replace('PT','')
-    duration = duration.replace(/([^0-9])+/g, ",");
-    let durationArray = duration.split(',');
-
-    let songDurH, songDurM, songDurS, videoDurationInSecs;
-
-    if( durationArray.length === 4){
-      songDurH = parseInt(durationArray[0]);
-      songDurM = parseInt(durationArray[1]);
-      songDurS = parseInt(durationArray[2]);
-      videoDurationInSecs = ((songDurH*60) + songDurM)*60 + songDurS;
-    } else if( durationArray.length === 3){
-      songDurM = parseInt(durationArray[0]);
-      songDurS = parseInt(durationArray[1]);
-      videoDurationInSecs = (songDurM*60) + songDurS;
-    } else if(durationArray.length === 2){
-      songDurS = parseInt(durationArray[0]);
-      videoDurationInSecs = songDurS;
-    }
-
-    console.log("current video duration");
-    console.log(videoDurationInSecs);
-
-    this.setState({
-      currentVideoDuration: videoDurationInSecs
-    })
-
-  }
-
 
 
   componentDidMount() {
 
     console.log('component did mount');
-    this.calculateCurrentVideoDuration(this.state.nowPlaying);
 
 
     //multiple fetch API
@@ -133,8 +92,8 @@ class App extends React.Component {
             ])
             .then((result) => {
                console.log("multiple fetch");
-               console.log(result[0]);
-               console.log(result[1]);
+               console.log(result[0].songs);
+               console.log(result[1].sessions_songs);
                //
                // this.setState({
                //   songs : result[0].songs,
@@ -150,52 +109,10 @@ class App extends React.Component {
   }
 
   componentWillUnmount() {
-    clearTimeout(timer);
   }
 
   render(){
-    console.log("session songs")
-    console.log(this.state.sSongs)
-    const { error, isLoaded, sSongs } = this.state;
-    let songRender = "";
-    let lyricsRender = "";
 
-    if (error) {
-    songRender = (
-            <React.Fragment>
-                <div>Error: {error.message}</div>
-                <Song
-                      products = {products}
-                      error={error}
-                      isLoaded={isLoaded}/>
-
-            </React.Fragment>
-        );
-
-    } else if (!isLoaded) {
-        songRender = (
-            <React.Fragment>
-                <div>Loading...</div>
-
-            </React.Fragment>
-
-        );
-
-
-    } else {
-         lyricsRender = (
-            <React.Fragment>
-                  <Lyrics session_song = {this.state.sSongs}/>
-            </React.Fragment>
-            )
-          songRender = (
-                <React.Fragment>
-                  <Session_Song session_song={this.state.sSongs}/>
-              </React.Fragment>
-
-        );
-
-    }
 
     let allSongs = this.state.sessionSongs;
     let currentSong = allSongs[this.state.nowPlaying];
@@ -231,9 +148,6 @@ class App extends React.Component {
         Lorem Ipsum
         <Search/>
         <h1 className="logo">Weraoke</h1>
-        {songRender}
-
-        {lyricsRender}
       </div>
     )
   }
