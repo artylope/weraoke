@@ -6,22 +6,35 @@
 module.exports = (dbPoolInstance) => {
   // `dbPoolInstance` is accessible within this function scope
 
-  let getAll = (callback) => {
+    let getAll = (callback) => {
 
-    dbPoolInstance.query('SELECT * from songs', (error, queryResult) => {
-      if (error) {
-        // invoke callback function with results after query has executed
-        callback(error, null);
-      } else {
-        // invoke callback function with results after query has executed
+        dbPoolInstance.query('SELECT * from songs', (error, queryResult) => {
+            if (error) {
+                // invoke callback function with results after query has executed
+                callback(error, null);
+            } else {
+                // invoke callback function with results after query has executed
 
-        callback(null, queryResult.rows );
-      }
-    });
-  };
+                callback(null, queryResult.rows );
+            }
+        });
+    };
 
+    let getById = (id, callback) => {
 
-  // let newThing = (data, callback) => {
+        const queryString = "SELECT * from songs WHERE songs.id=($1)"
+        let arr = [id]
+
+        dbPoolInstance.query(queryString, arr, (error, queryResult) => {
+            if (error) {
+                // invoke callback function with results after query has executed
+                callback(error, null);
+            } else {
+                // invoke callback function with results after query has executed
+                callback(null, queryResult.rows );
+            }
+        });
+    };
 
   //     let name = data.name;
   //     let price = data.price;
@@ -30,8 +43,6 @@ module.exports = (dbPoolInstance) => {
   //     console.log(data)
   //     let query = "INSERT INTO products (name, price, description) VALUES ($1 , $2 , $3) RETURNING *";
   //     const values = [name, price, description];
-
-
   //     console.log(values);
   //     dbPoolInstance.query(query, values, (error, queryResult) => {
   //       if (error) {
@@ -47,12 +58,10 @@ module.exports = (dbPoolInstance) => {
       //   }
       // });
 
-
-
-
-
   return {
-    getAll
+    getAll,
+    getById
+    // createNew
     //newThing
   };
 };

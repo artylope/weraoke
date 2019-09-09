@@ -1,19 +1,34 @@
 module.exports = (db) => {
 
+    let getAll = (request, response) => {
 
-  let getAll = (request, response) => {
+        db.songs.getAll((error, songs) => {
 
-    db.songs.getAll((error, songs) => {
+            if (error) {
+                console.error('error getting song', error);
+                response.status(500);
+                response.send('server error');
+            } else {
+                response.send({songs: songs});
+            }
+        });
+    };
 
-      if (error) {
-        console.error('error getting song', error);
-        response.status(500);
-        response.send('server error');
-      } else {
-        response.send({songs: songs});
-      }
-    });
-  };
+    let getById = (request, response) => {
+
+        let song_id = parseInt(request.params.id);
+
+        db.songs.getById(song_id,(error, songs) => {
+
+            if (error) {
+                console.error('error getting song', error);
+                response.status(500);
+                response.send('server error');
+            } else {
+                response.send({songs: songs});
+            }
+        });
+    };
 
 
   // let newProduct = (request, response) => {
@@ -28,10 +43,9 @@ module.exports = (db) => {
 
   // };
 
-
-
   return {
     getAll: getAll,
+    getById: getById
     //newProduct:newProduct
   };
 };
