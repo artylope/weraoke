@@ -22,7 +22,7 @@ class App extends React.Component {
     super();
     this.state = {
 
-      sessionId : 1,
+      sessionId : 3,
 
       //data stuff
       preloadSong: {
@@ -52,6 +52,7 @@ class App extends React.Component {
     this.handlePlaylistShowHide = this.handlePlaylistShowHide.bind(this);
     this.handlePlaylistItemClick = this.handlePlaylistItemClick.bind(this);
     this.handleSearchPanelShowHide = this.handleSearchPanelShowHide.bind(this);
+    this.handleAddSongToPlaylist = this.handleAddSongToPlaylist.bind(this);
   }
 
   handlePlaylistShowHide(state){
@@ -93,6 +94,29 @@ class App extends React.Component {
     }
   }
 
+  handleAddSongToPlaylist(songId){
+    console.log('add song ', songId);
+    let addSongURL = 'http://localhost:3000/api/sessions/' + this.state.sessionId + '/new';
+    console.log(addSongURL);
+
+    fetch(addSongURL, {
+      method: "post",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+
+      //make sure to serialize your JSON body
+      body: JSON.stringify({
+        session_id: this.state.sessionId,
+        song_id: songId
+      })
+    })
+    .then( (response) => {
+       //do something awesome that makes the world a better place
+       console.log('done');
+    });
+  }
 
   componentDidMount(){
 
@@ -169,8 +193,8 @@ class App extends React.Component {
         <PlaylistButton playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} />
         <Playlist isPlaying = {this.state.isPlaying} nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} handlePlaylistItemClick= {this.handlePlaylistItemClick}/>
         Lorem Ipsum
-        <Search handleSearchPanelShowHide = {this.handleSearchPanelShowHide} searchPanel={this.state.searchPanel} allSongs = {this.state.allSongs}/>
         <SearchPanelButton handleSearchPanelShowHide= {this.handleSearchPanelShowHide} searchPanel={this.state.searchPanel} />
+        <Search sessionSongs= {this.state.sessionSongs} handleSearchPanelShowHide = {this.handleSearchPanelShowHide} searchPanel={this.state.searchPanel} allSongs = {this.state.allSongs} handleAddSongToPlaylist = {this.handleAddSongToPlaylist}/>
         <h1 className="logo">Weraoke</h1>
       </div>
     )

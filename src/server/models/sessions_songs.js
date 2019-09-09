@@ -53,10 +53,16 @@ module.exports = (dbPoolInstance) => {
     //     });
     // };
 
-    let addSongsToPlaylist = (id, callback) => {
+    let addSongsToPlaylist = (data, callback) => {
 
-        let session_id = (request.params.id);
-        let song_id = (request.body.id)
+        console.log('in model');
+        console.log('data', data)
+        // let session_id = (request.params.id);
+        let songId = (data.song_id);
+        let sessionId = (data.session_id);
+
+        console.log(songId);
+        console.log(sessionId);
 
         const queryString = "insert into sessions_songs (session_id, song_id) values ($1, $2)";
         const values = [sessionId, songId ]

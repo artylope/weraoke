@@ -8,18 +8,20 @@ class Search extends React.Component{
 
   render() {
 
+    let eachSongClasses = 'each-song';
+
 
     let songItems = this.props.allSongs.map( (song, index) => {
       return(
-        <div className="each-song" key={index}>
-          <p>{song.song_name},{song.artist_id}</p>
+        <div className={eachSongClasses} key={index} onClick={()=>{this.props.handleAddSongToPlaylist(song.id)}}>
+          <p>{song.id}.{song.song_name},{song.artist_name}</p>
           <a>Add</a>
         </div>
       )
     });
 
     let searchPanelClasses;
-    
+
     if(this.props.searchPanel === true){
       searchPanelClasses = "search show"
     } else if (this.props.searchPanel  === false){
