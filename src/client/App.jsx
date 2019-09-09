@@ -24,6 +24,10 @@ class App extends React.Component {
     super();
     this.state = {
 
+      sessionId : 0,
+
+      songs: [],
+
       //playlist UI stuff
       playlist: true,
 
@@ -118,31 +122,31 @@ class App extends React.Component {
     this.calculateCurrentVideoDuration(this.state.nowPlaying);
 
 
-    const obj = this;
+    //multiple fetch API
+    let allSongsUrl = 'http://localhost:3000/songs';
+    // let allArtistsUrl = 'http://localhost:3000/artists';
+    let thisSessionSongsUrl = 'http://localhost:3000/sessions_songs';
 
-    var responseHandler = function() {
-        // console.log("response text", this.responseText);
-        // console.log("status text", this.statusText);
-        // console.log("status code", this.status);
-        const result = JSON.parse( this.responseText);
-        console.log("result", result);
+    Promise.all([
+            fetch(allSongsUrl).then(allSongs => allSongs.json()),
+            fetch(thisSessionSongsUrl).then(allSessionSongs => allSessionSongs.json())
+            ])
+            .then((result) => {
+               console.log("multiple fetch");
+               console.log(result[0]);
+               console.log(result[1]);
 
-        obj.setState({
-            isLoaded: true,
-            sSongs: result.sessions_songs}
-            );
+               // this.setState({
+               //   songs : result[0],
+               //   sessionSongs : result[1]
+               // })
+              //json response
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+            
 
-        console.log('after set state');
-
-    };
-
-    var request = new XMLHttpRequest();
-
-    request.addEventListener("load", responseHandler);
-
-    request.open("GET", "http://localhost:3000/sessions_songs");
-
-    request.send();
   }
 
   componentWillUnmount() {
@@ -197,10 +201,12 @@ class App extends React.Component {
     let currentSong = allSongs[this.state.nowPlaying];
 
     const opts = {
-      height: '780',
-      width: '1280',
+      height: '585',
+      width: '960',
       playerVars: { // https://developers.google.com/youtube/player_parameters
-        autoplay: 1
+        autoplay: 1,
+        controls: 0,
+        modestbranding: 1
       }
     };
 
