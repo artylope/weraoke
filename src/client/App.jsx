@@ -26,21 +26,17 @@ class App extends React.Component {
 
       sessionId : 1,
 
+      //data stuff
+      sessionSongs: sessionSongs,
       songs: [],
 
       //playlist UI stuff
       playlist: true,
 
-      //playlist data stuff
-      sessionSongs: sessionSongs,
-
       //current song info
       nowPlaying: 0,
       isPlaying: true,
 
-
-      //ajax of songs
-      songs: [],
 
 
     };
