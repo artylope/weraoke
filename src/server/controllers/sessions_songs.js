@@ -66,15 +66,17 @@ module.exports = (db) => {
     }
 
     let removeSongsFromPlaylist = (request, response) => {
-        let session_song_id = request.body;
-         db.sessions_songs.removeSongsFromPlaylist(session_id,(error, sessions_songs) => {
+        console.log('request', request.body);
+        let sessions_songs = request.body;
+
+        db.sessions_songs.removeSongsFromPlaylist(session_id,(error, result) => {
 
             if (error) {
                 console.error('error adding songs', error);
                 response.status(500);
                 response.send('server error');
             } else {
-                response.send({sessions_songs: sessions_songs});
+                response.send();
             }
         });
 
