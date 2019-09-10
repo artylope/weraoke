@@ -7,6 +7,9 @@ body{
   font-weight: 400;
   color: $body-text;
   overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
 }
 
 button:focus, textarea:focus, input:focus{
