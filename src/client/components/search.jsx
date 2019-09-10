@@ -9,7 +9,7 @@ class Search extends React.Component{
       super(props);
 
       this.state = {
-          searchTerm: "",
+          searchTerm: '',
           searchResults: this.props.sessionSongs
       };
 

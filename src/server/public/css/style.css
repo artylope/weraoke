@@ -245,7 +245,11 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center; }
+    align-items: center;
+    margin-bottom: 20px; }
+    .search .search-title h1 {
+      font-size: 40px;
+      margin: 0; }
     .search .search-title .search-panel-hide i {
       font-size: 30px; }
   .search input {
