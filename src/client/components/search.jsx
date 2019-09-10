@@ -76,16 +76,15 @@ class Search extends React.Component{
         <div className={searchPanelClasses}>
           <div className="search-title">
               <h1>Search</h1>
-              <p>{this.props.allSongs.length} songs in database</p>
               <div className="search-panel-hide" onClick={()=>{this.props.handleSearchPanelShowHide(this.props.searchPanel)}}>
                 <i className='bx bx-x-circle' ></i>
               </div>
           </div>
 
-          <i className='bx bx-search-alt' ></i>
+
           <input onChange={(event) => this.handleSearchInput(event.target.value)}/>
             <div class="all-songs">
-              {this.state.searchResults.length} results
+              <p className="search-results-count">{this.state.searchResults.length} results</p>
               {searchResultsList}
             </div>
         </div>

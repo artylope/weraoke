@@ -156,6 +156,9 @@ class App extends React.Component {
        console.log('done');
        console.log('response', response);
        this.loadData();
+       this.setState({
+         playlist: true
+       })
     });
   }
 
