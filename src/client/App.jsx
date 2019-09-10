@@ -4,7 +4,7 @@ import YouTube from 'react-youtube';
 
 
 //components
-// import Nav from './components/nav';
+import Nav from './components/nav';
 // import Playlist from './components/playlist';
 // import Player from './components/player';
 import Search from './components/search';
@@ -41,7 +41,7 @@ class App extends React.Component {
       playlist: false,
       searchPanel: false,
       playlistEditMode: false,
-      videoComponent: false,
+      videoComponent: true,
 
       //current song info
       nowPlaying: 0,
@@ -228,7 +228,7 @@ class App extends React.Component {
       this.setState({
         playlist: true,
         searchPanel: true,
-        videoComponent: false
+        videoComponent: true
 
       })
     } else {
@@ -280,7 +280,7 @@ class App extends React.Component {
 
     return(
       <div>
-        <h1 className="logo">Weraoke</h1>
+        <Nav/>
 
         <div className={videoPanelClasses}>
           <YouTube
@@ -324,8 +324,8 @@ class App extends React.Component {
             handleSearchPanelShowHide = {this.handleSearchPanelShowHide}
             searchPanel={this.state.searchPanel} allSongs = {this.state.allSongs}
             handleAddSongToPlaylist = {this.handleAddSongToPlaylist}/>
-         <Lyrics 
-           getLyricsForCurrentSong = {this.state.getLyricsForCurrentSong} 
+         <Lyrics
+           getLyricsForCurrentSong = {this.state.getLyricsForCurrentSong}
            songLyrics = {this.state.songLyrics} />
       </div>
     )
