@@ -10,7 +10,7 @@ class Search extends React.Component{
 
       this.state = {
           searchTerm: "",
-          searchResults: []
+          searchResults: this.props.sessionSongs
       };
 
       this.handleSearchInput = this.handleSearchInput.bind(this);
@@ -65,9 +65,9 @@ class Search extends React.Component{
     console.log(this.state.searchResults);
     let searchResultsList = this.state.searchResults.map( (song, index) => {
           return(
-          <div className={eachSongClasses} key={index} onClick={()=>{this.props.handleAddSongToPlaylist(song.id)}}>
+          <div className={eachSongClasses} key={index}>
             <p>{song.song_name} , {song.artist_name}</p>
-            <a>Add</a>
+            <a onClick={()=>{this.props.handleAddSongToPlaylist(song.id)}}>Add</a>
           </div>
         )});
 

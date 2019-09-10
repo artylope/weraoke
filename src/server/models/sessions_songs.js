@@ -82,12 +82,14 @@ module.exports = (dbPoolInstance) => {
 
     let removeSongsFromPlaylist  = (data, callback) => {
 
-        let session_song_id = (data.sessions_songs.id)
-        console.log('id to delete is ', session_song_id)
+        console.log('in removeSongsFromPlaylist inb model', data);
 
-        const queryString = "delete from sessions_songs where id="+session_song_id;
+        let songId = data.song_id;
+        console.log('id to delete is ', songId)
 
-        dbPoolInstance.query(queryString, values, (error, queryResult) => {
+        const queryString = "delete from sessions_songs where id="+ songId;
+
+        dbPoolInstance.query(queryString, (error, queryResult) => {
             if (error) {
                 // invoke callback function with results after query has executed
                 callback(error, null);
