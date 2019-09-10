@@ -4,7 +4,7 @@ import YouTube from 'react-youtube';
 
 
 //components
-// import Nav from './components/nav';
+import Nav from './components/nav';
 // import Playlist from './components/playlist';
 // import Player from './components/player';
 import Search from './components/search';
@@ -26,12 +26,9 @@ class App extends React.Component {
 
       //data stuff
       preloadSong: {
-        "name": "Just The Way You Are",
-        "artist": "Bruno Mars",
-        "video_link": "LjhCEhWiKXk",
-        "duration": "PT3S",
-        "order": 1,
-        "status": "watched"
+        "name": "Never Gonna Give You Up",
+        "artist": "Rick Astley",
+        "video_link": "dQw4w9WgXcQ"
       },
       sessionLoaded: false,
       sessionSongs: [],
@@ -41,7 +38,7 @@ class App extends React.Component {
       playlist: false,
       searchPanel: false,
       playlistEditMode: false,
-      videoComponent: false,
+      videoComponent: true,
 
       //current song info
       nowPlaying: 0,
@@ -159,6 +156,9 @@ class App extends React.Component {
        console.log('done');
        console.log('response', response);
        this.loadData();
+       this.setState({
+         playlist: true
+       })
     });
   }
 
@@ -228,7 +228,7 @@ class App extends React.Component {
       this.setState({
         playlist: true,
         searchPanel: true,
-        videoComponent: false
+        videoComponent: true
 
       })
     } else {
@@ -280,7 +280,7 @@ class App extends React.Component {
 
     return(
       <div>
-        <h1 className="logo">Weraoke</h1>
+        <Nav/>
 
         <div className={videoPanelClasses}>
           <YouTube
@@ -324,8 +324,8 @@ class App extends React.Component {
             handleSearchPanelShowHide = {this.handleSearchPanelShowHide}
             searchPanel={this.state.searchPanel} allSongs = {this.state.allSongs}
             handleAddSongToPlaylist = {this.handleAddSongToPlaylist}/>
-         <Lyrics 
-           getLyricsForCurrentSong = {this.state.getLyricsForCurrentSong} 
+         <Lyrics
+           getLyricsForCurrentSong = {this.state.getLyricsForCurrentSong}
            songLyrics = {this.state.songLyrics} />
       </div>
     )
