@@ -26,12 +26,9 @@ class App extends React.Component {
 
       //data stuff
       preloadSong: {
-        "name": "Just The Way You Are",
-        "artist": "Bruno Mars",
-        "video_link": "LjhCEhWiKXk",
-        "duration": "PT3S",
-        "order": 1,
-        "status": "watched"
+        "name": "Baby Shark",
+        "artist": "Pinkfong",
+        "video_link": "XqZsoesa55w"
       },
       sessionLoaded: false,
       sessionSongs: [],
