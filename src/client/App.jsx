@@ -33,6 +33,7 @@ class App extends React.Component {
         "order": 1,
         "status": "watched"
       },
+      sessionLoaded: false,
       sessionSongs: [],
       allSongs: [],
 
@@ -124,25 +125,31 @@ class App extends React.Component {
 
   getLyricsForCurrentSong(artist, song){
     console.log('get lyrics')
-    console.log(this.state.sessionSongs)
-    // let nowSong = this.state.sessionSongs[this.state.nowPlaying]
-    // let lyricsURL = 'https://orion.apiseeds.com/api/music/lyric/'+ nowSong.artist_name+ '/' + nowSong.song_name +'?apikey=6OuZYIhADWWkOz53zaP9udYTuorPEnHiYze6l0PlTqxUtGTzaeOSx2X7yuTd9X3J'
-    fetch('https://orion.apiseeds.com/api/music/lyric/'+this.state.artist+'/'+this.state.track+'?apikey=6OuZYIhADWWkOz53zaP9udYTuorPEnHiYze6l0PlTqxUtGTzaeOSx2X7yuTd9X3J')
-        .then(res => res.json())
-        .then(
-            (result) => {
-                console.log(result.result)
-                this.setState({
-                    songLyrics: result.result.track.text
-                });
-            }
-            //     (error) => {
-            //         this.setState({
+    if (this.state.sessionLoaded === true) {
+        console.log('loaded')
+        let nowSong = this.state.sessionSongs[this.state.nowPlaying]
+        console.log(nowSong)
 
-            //             error
-            //         });
-            //     }
-            )
+        let lyricsURL = 'https://orion.apiseeds.com/api/music/lyric/'+ this.state.artist+ '/' + this.state.track +'?apikey=6OuZYIhADWWkOz53zaP9udYTuorPEnHiYze6l0PlTqxUtGTzaeOSx2X7yuTd9X3J'
+        fetch(lyricsURL)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log(result.result)
+                    this.setState({
+                        songLyrics: result.result.track.text
+                    });
+                }
+                //     (error) => {
+                //         this.setState({
+
+                //             error
+                //         });
+                //     }
+                )
+    } else {
+        console.log('not loaded')
+    }
   }
 
   loadData(){
@@ -162,6 +169,7 @@ class App extends React.Component {
                console.log(result[1].sessions_songs);
                //
                this.setState({
+                 sessionLoaded: true,
                  allSongs : result[0].songs,
                  sessionSongs : result[1].sessions_songs
                });
@@ -191,6 +199,7 @@ class App extends React.Component {
       currentSong = this.state.preloadSong;
     } else if (sessionSongs.length > 0) {
       currentSong = this.state.sessionSongs[this.state.nowPlaying];
+      console.log('now playing: ', currentSong)
     }
 
     //1280 x 780
