@@ -58,7 +58,7 @@ class PlaylistItem extends React.Component{
                 <div className="song-info"><p>{this.props.song.song_name}</p> <p>{songDurDisplay}</p></div>
                 <div className="song-info-2"><p>{this.props.song.artist_name}</p><i onClick={() => {
                   console.log(this.props.song.id)
-                  this.props.handlePlaylistItemDelete(this.props.song.id);
+                  this.props.handlePlaylistItemDelete(this.props.song.id, this.props.index);
                 }}class='bx bx-trash-alt'></i></div>
             </div>
         </div>

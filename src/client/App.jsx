@@ -78,8 +78,10 @@ class App extends React.Component {
 
   }
 
-  handlePlaylistItemDelete(songId){
+  handlePlaylistItemDelete(songId, sessionSongId){
     console.log('delete song from playlist ', songId);
+    console.log('currentSong' + this.state.nowPlaying);
+    console.log('sessionSongId' + sessionSongId);
 
     let deleteSongURL = 'http://localhost:3000/api/sessions/' + this.state.sessionId + '/delete';
     fetch(deleteSongURL , {
@@ -97,13 +99,17 @@ class App extends React.Component {
     })
     .then( (response) => {
        //do something awesome that makes the world a better place
-       this.loadData();
+
        console.log('done');
        console.log('response', response);
 
        console.log('reload data');
 
+       // let sessionSongs = this.state.sessionSongs;
+       // sessionSongs.splice(sessionSongId, 1);
+       // console.log(sessionSongs);
 
+       this.loadData();
     });
 
   }
@@ -217,6 +223,9 @@ class App extends React.Component {
           videoId={currentSong.video_link}
           opts={opts}
           onReady={this._onReady}
+          onPlay={
+            console.log('nowPlaying' , this.state.nowPlaying)
+          }
           onEnd={()=>{
             if( this.state.nowPlaying === (this.state.sessionSongs.length - 1)){
               this.setState({
