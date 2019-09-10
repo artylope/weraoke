@@ -38,8 +38,10 @@ class App extends React.Component {
       allSongs: [],
 
       //UI stuff
-      playlist: true,
-      searchPanel: true,
+      playlist: false,
+      searchPanel: false,
+      playlistEditMode: false,
+      videoComponent: false,
 
       //current song info
       nowPlaying: 0,
@@ -52,6 +54,7 @@ class App extends React.Component {
 
     this.handlePlaylistShowHide = this.handlePlaylistShowHide.bind(this);
     this.handlePlaylistItemClick = this.handlePlaylistItemClick.bind(this);
+    this.handlePlaylistItemDelete = this.handlePlaylistItemDelete.bind(this);
     this.handleSearchPanelShowHide = this.handleSearchPanelShowHide.bind(this);
     this.handleAddSongToPlaylist = this.handleAddSongToPlaylist.bind(this);
     this.getLyricsForCurrentSong = this.getLyricsForCurrentSong(this);
@@ -73,13 +76,48 @@ class App extends React.Component {
   }
 
   handlePlaylistItemClick(index){
-    // console.log('clicked playlist ', index);
-    // console.log('video duration ', videoDuration);
+
     let selectedSong = parseInt(index);
     this.setState({
       nowPlaying: selectedSong,
       // playlist: false
     })
+
+  }
+
+  handlePlaylistItemDelete(songId, sessionSongId){
+    console.log('delete song from playlist ', songId);
+    console.log('currentSong' + this.state.nowPlaying);
+    console.log('sessionSongId' + sessionSongId);
+
+    let deleteSongURL = 'http://localhost:3000/api/sessions/' + this.state.sessionId + '/songs/delete';
+    fetch(deleteSongURL , {
+      method: "delete",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+
+      //make sure to serialize your JSON body
+      body: JSON.stringify({
+        session_id: this.state.sessionId,
+        song_id: songId
+      })
+    })
+    .then( (response) => {
+       //do something awesome that makes the world a better place
+
+       console.log('done');
+       console.log('response', response);
+
+       console.log('reload data');
+
+       // let sessionSongs = this.state.sessionSongs;
+       // sessionSongs.splice(sessionSongId, 1);
+       // console.log(sessionSongs);
+
+       this.loadData();
+    });
 
   }
 
@@ -99,8 +137,9 @@ class App extends React.Component {
 
   handleAddSongToPlaylist(songId){
     console.log('add song ', songId);
-    let addSongURL = 'http://localhost:3000/api/sessions/' + this.state.sessionId + '/new';
+    let addSongURL = 'http://localhost:3000/api/sessions/' + this.state.sessionId + '/songs/new';
     console.log(addSongURL);
+
 
     fetch(addSongURL, {
       method: "post",
@@ -156,7 +195,7 @@ class App extends React.Component {
     //multiple fetch API
     let allSongsUrl = 'http://localhost:3000/api/songs';
     // let allArtistsUrl = 'http://localhost:3000/artists';
-    let thisSessionSongsUrl = 'http://localhost:3000/api/sessions/' + this.state.sessionId;
+    let thisSessionSongsUrl = 'http://localhost:3000/api/sessions/' + this.state.sessionId + "/songs";
 
 
     Promise.all([
@@ -182,6 +221,24 @@ class App extends React.Component {
 
 
   componentDidMount(){
+    console.log("window.location.pathname " , window.location.pathname);
+
+    if( (window.location.pathname) === "/playlist" ){
+      console.log("playlist");
+      this.setState({
+        playlist: true,
+        searchPanel: true,
+        videoComponent: false
+
+      })
+    } else {
+      console.log("video/default");
+      this.setState({
+        playlist: false,
+        searchPanel: false,
+        videoComponent: true
+      })
+    }
 
     console.log('component did mount');
     this.loadData();
@@ -195,7 +252,7 @@ class App extends React.Component {
     let sessionSongs = this.state.sessionSongs;
 
     let currentSong;
-    if (sessionSongs.length === 0){
+    if (sessionSongs.length <= 0){
       currentSong = this.state.preloadSong;
     } else if (sessionSongs.length > 0) {
       currentSong = this.state.sessionSongs[this.state.nowPlaying];
@@ -214,28 +271,62 @@ class App extends React.Component {
       }
     };
 
+    let videoPanelClasses = "video-panel"
+    if(this.state.videoComponent === true){
+      videoPanelClasses = "video-panel show";
+    } else if(this.state.videoComponent === false){
+      videoPanelClasses = "video-panel hide";
+    }
+
     return(
       <div>
         <h1 className="logo">Weraoke</h1>
 
-        <div className="video-panel">
+        <div className={videoPanelClasses}>
           <YouTube
           videoId={currentSong.video_link}
           opts={opts}
           onReady={this._onReady}
+          onPlay={
+            console.log('nowPlaying' , this.state.nowPlaying)
+          }
           onEnd={()=>{
-            this.setState({
-              nowPlaying: (this.state.nowPlaying) + 1,
-            })
+            if( this.state.nowPlaying === (this.state.sessionSongs.length - 1)){
+              this.setState({
+                nowPlaying: 0,
+              })
+            } else {
+              this.setState({
+                nowPlaying: (this.state.nowPlaying) + 1,
+              });
+            }
           }}
           />
         </div>
 
-        <PlaylistButton playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} />
-        <Playlist isPlaying = {this.state.isPlaying} nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} handlePlaylistItemClick= {this.handlePlaylistItemClick}/>
-        <SearchPanelButton handleSearchPanelShowHide= {this.handleSearchPanelShowHide} searchPanel={this.state.searchPanel} />
-        <Search sessionSongs= {this.state.sessionSongs} handleSearchPanelShowHide = {this.handleSearchPanelShowHide} searchPanel={this.state.searchPanel} allSongs = {this.state.allSongs} handleAddSongToPlaylist = {this.handleAddSongToPlaylist}/>
-        <Lyrics getLyricsForCurrentSong = {this.state.getLyricsForCurrentSong} songLyrics = {this.state.songLyrics} />
+
+        <PlaylistButton
+            playlist={this.state.playlist}
+            handlePlaylistShowHide= {this.handlePlaylistShowHide} />
+        <Playlist
+            isPlaying = {this.state.isPlaying}
+            nowPlaying={this.state.nowPlaying}
+            sessionSongs={this.state.sessionSongs}
+            playlist={this.state.playlist}
+            handlePlaylistShowHide= {this.handlePlaylistShowHide}
+            handlePlaylistItemClick= {this.handlePlaylistItemClick}
+            handlePlaylistItemDelete= {this.handlePlaylistItemDelete}/>
+        <SearchPanelButton
+            handleSearchPanelShowHide= {this.handleSearchPanelShowHide}
+            searchPanel={this.state.searchPanel} />
+        <Search
+            sessionSongs= {this.state.sessionSongs}
+            handleSearchPanelShowHide = {this.handleSearchPanelShowHide}
+            searchPanel={this.state.searchPanel} allSongs = {this.state.allSongs}
+            handleAddSongToPlaylist = {this.handleAddSongToPlaylist}/>
+         <Lyrics 
+           getLyricsForCurrentSong = {this.state.getLyricsForCurrentSong} 
+           songLyrics = {this.state.songLyrics} />
       </div>
     )
   }

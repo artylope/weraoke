@@ -19,7 +19,14 @@ class Playlist extends React.Component{
 
      let playlistItems = this.props.sessionSongs.map((song, index) => {
        return(
-         <PlaylistItem key={index} index={index} song={song} nowPlaying={this.props.nowPlaying} handlePlaylistItemClick = {this.props.handlePlaylistItemClick} />
+         <PlaylistItem
+             key={index}
+             index={index}
+             song={song}
+             nowPlaying={this.props.nowPlaying}
+             handlePlaylistItemClick = {this.props.handlePlaylistItemClick}
+             handlePlaylistItemDelete = {this.props.handlePlaylistItemDelete}
+          />
        );
      })
 
@@ -28,7 +35,10 @@ class Playlist extends React.Component{
           <div className="playlist">
               <div className="playlist-title">
                   <h1>Playlist</h1>
-                  <div className="playlist-hide" onClick={()=>{this.props.handlePlaylistShowHide(this.props.playlist)}}>
+                  <div
+                    className="playlist-hide"
+                    onClick={()=>{this.props.handlePlaylistShowHide(this.props.playlist)}}
+                    handlePlaylistItemDelete= {this.props.handlePlaylistItemDelete}>
                     <i className='bx bx-x-circle' ></i>
                   </div>
               </div>

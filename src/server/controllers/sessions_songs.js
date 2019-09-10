@@ -68,8 +68,8 @@ module.exports = (db) => {
     let removeSongsFromPlaylist = (request, response) => {
         console.log('request', request.body);
         let sessions_songs = request.body;
-
-        db.sessions_songs.removeSongsFromPlaylist(session_id,(error, result) => {
+        console.log('session_songs in controller', sessions_songs);
+        db.sessions_songs.removeSongsFromPlaylist(sessions_songs,(error, result) => {
 
             if (error) {
                 console.error('error adding songs', error);
