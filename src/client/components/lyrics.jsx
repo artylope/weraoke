@@ -4,19 +4,14 @@ import React from 'react';
 class Lyrics extends React.Component {
 
     render() {
-        const songlyrics = this.props.session_song.map((item, index) => {
-            return (
-                <p key={index}>{item.lyrics}
-                </p>
+        const songlyrics = this.props.songLyrics
 
-                )
-        })
-    return (
-      <div>
-        {songlyrics}
-      </div>
-    );
-  }
+        return (
+            <div className="song-lyrics"><p>
+                {songlyrics}</p>
+            </div>
+        );
+    }
 }
 
 export default Lyrics;

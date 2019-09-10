@@ -43,6 +43,9 @@ class App extends React.Component {
       //current song info
       nowPlaying: 0,
       isPlaying: true,
+      songLyrics: '',
+            artist: 'backstreet boys',
+            track: 'i want it that way',
     };
 
 
@@ -50,6 +53,8 @@ class App extends React.Component {
     this.handlePlaylistItemClick = this.handlePlaylistItemClick.bind(this);
     this.handleSearchPanelShowHide = this.handleSearchPanelShowHide.bind(this);
     this.handleAddSongToPlaylist = this.handleAddSongToPlaylist.bind(this);
+    this.getLyricsForCurrentSong = this.getLyricsForCurrentSong(this);
+
   }
 
   handlePlaylistShowHide(state){
@@ -117,6 +122,28 @@ class App extends React.Component {
     });
   }
 
+  getLyricsForCurrentSong(artist, song){
+    console.log('get lyrics')
+    console.log(this.state.sessionSongs)
+    // let nowSong = this.state.sessionSongs[this.state.nowPlaying]
+    // let lyricsURL = 'https://orion.apiseeds.com/api/music/lyric/'+ nowSong.artist_name+ '/' + nowSong.song_name +'?apikey=6OuZYIhADWWkOz53zaP9udYTuorPEnHiYze6l0PlTqxUtGTzaeOSx2X7yuTd9X3J'
+    fetch('https://orion.apiseeds.com/api/music/lyric/'+this.state.artist+'/'+this.state.track+'?apikey=6OuZYIhADWWkOz53zaP9udYTuorPEnHiYze6l0PlTqxUtGTzaeOSx2X7yuTd9X3J')
+        .then(res => res.json())
+        .then(
+            (result) => {
+                console.log(result.result)
+                this.setState({
+                    songLyrics: result.result.track.text
+                });
+            }
+            //     (error) => {
+            //         this.setState({
+
+            //             error
+            //         });
+            //     }
+            )
+  }
 
   loadData(){
     //multiple fetch API
@@ -152,6 +179,8 @@ class App extends React.Component {
     this.loadData();
 
     }
+
+
 
   render(){
 
@@ -197,7 +226,7 @@ class App extends React.Component {
         <Playlist isPlaying = {this.state.isPlaying} nowPlaying={this.state.nowPlaying} sessionSongs={this.state.sessionSongs} playlist={this.state.playlist} handlePlaylistShowHide= {this.handlePlaylistShowHide} handlePlaylistItemClick= {this.handlePlaylistItemClick}/>
         <SearchPanelButton handleSearchPanelShowHide= {this.handleSearchPanelShowHide} searchPanel={this.state.searchPanel} />
         <Search sessionSongs= {this.state.sessionSongs} handleSearchPanelShowHide = {this.handleSearchPanelShowHide} searchPanel={this.state.searchPanel} allSongs = {this.state.allSongs} handleAddSongToPlaylist = {this.handleAddSongToPlaylist}/>
-
+        <Lyrics getLyricsForCurrentSong = {this.state.getLyricsForCurrentSong} songLyrics = {this.state.songLyrics} />
       </div>
     )
   }
