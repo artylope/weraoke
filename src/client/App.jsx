@@ -97,9 +97,13 @@ class App extends React.Component {
     })
     .then( (response) => {
        //do something awesome that makes the world a better place
+       this.loadData();
        console.log('done');
        console.log('response', response);
-       this.loadData();
+
+       console.log('reload data');
+
+
     });
 
   }
@@ -122,6 +126,7 @@ class App extends React.Component {
     console.log('add song ', songId);
     let addSongURL = 'http://localhost:3000/api/sessions/' + this.state.sessionId + '/new';
     console.log(addSongURL);
+
 
     fetch(addSongURL, {
       method: "post",
@@ -185,7 +190,7 @@ class App extends React.Component {
     let sessionSongs = this.state.sessionSongs;
 
     let currentSong;
-    if (sessionSongs.length === 0){
+    if (sessionSongs.length <= 0){
       currentSong = this.state.preloadSong;
     } else if (sessionSongs.length > 0) {
       currentSong = this.state.sessionSongs[this.state.nowPlaying];
@@ -213,9 +218,15 @@ class App extends React.Component {
           opts={opts}
           onReady={this._onReady}
           onEnd={()=>{
-            this.setState({
-              nowPlaying: (this.state.nowPlaying) + 1,
-            })
+            if( this.state.nowPlaying === (this.state.sessionSongs.length - 1)){
+              this.setState({
+                nowPlaying: 0,
+              })
+            } else {
+              this.setState({
+                nowPlaying: (this.state.nowPlaying) + 1,
+              });
+            }
           }}
           />
         </div>
