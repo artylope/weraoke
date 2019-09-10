@@ -10,7 +10,7 @@ class Search extends React.Component{
 
       this.state = {
           searchTerm: "",
-          searchResults: null
+          searchResults: []
       };
 
       this.handleSearchInput = this.handleSearchInput.bind(this);
@@ -34,7 +34,7 @@ class Search extends React.Component{
     });
 
     console.log(searchResults);
-    
+
     this.setState({
       searchResults: searchResults
     })
@@ -62,6 +62,16 @@ class Search extends React.Component{
       searchPanelClasses = "search hide"
     }
 
+    console.log(this.state.searchResults);
+    let searchResultsList = this.state.searchResults.map( (song, index) => {
+          return(
+          <div className={eachSongClasses} key={index} onClick={()=>{this.props.handleAddSongToPlaylist(song.id)}}>
+            <p>{song.song_name} , {song.artist_name}</p>
+            <a>Add</a>
+          </div>
+        )});
+
+
      return (
         <div className={searchPanelClasses}>
           <div className="search-title">
@@ -75,7 +85,8 @@ class Search extends React.Component{
           <i className='bx bx-search-alt' ></i>
           <input onChange={(event) => this.handleSearchInput(event.target.value)}/>
             <div class="all-songs">
-              {songItems}
+              {this.state.searchResults.length} results
+              {searchResultsList}
             </div>
         </div>
 
