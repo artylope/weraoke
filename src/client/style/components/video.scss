@@ -4,4 +4,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+
+  &.show{
+    visibility: visible;
+  }
+
+  &.hide{
+    visibility: hidden;
+  }
 }
