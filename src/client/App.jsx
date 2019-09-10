@@ -37,9 +37,10 @@ class App extends React.Component {
       allSongs: [],
 
       //UI stuff
-      playlist: true,
-      searchPanel: true,
+      playlist: false,
+      searchPanel: false,
       playlistEditMode: false,
+      videoComponent: false,
 
       //current song info
       nowPlaying: 0,
@@ -83,7 +84,7 @@ class App extends React.Component {
     console.log('currentSong' + this.state.nowPlaying);
     console.log('sessionSongId' + sessionSongId);
 
-    let deleteSongURL = 'http://localhost:3000/api/sessions/' + this.state.sessionId + '/delete';
+    let deleteSongURL = 'http://localhost:3000/api/sessions/' + this.state.sessionId + '/songs/delete';
     fetch(deleteSongURL , {
       method: "delete",
       headers: {
@@ -130,7 +131,7 @@ class App extends React.Component {
 
   handleAddSongToPlaylist(songId){
     console.log('add song ', songId);
-    let addSongURL = 'http://localhost:3000/api/sessions/' + this.state.sessionId + '/new';
+    let addSongURL = 'http://localhost:3000/api/sessions/' + this.state.sessionId + '/songs/new';
     console.log(addSongURL);
 
 
@@ -160,7 +161,7 @@ class App extends React.Component {
     //multiple fetch API
     let allSongsUrl = 'http://localhost:3000/api/songs';
     // let allArtistsUrl = 'http://localhost:3000/artists';
-    let thisSessionSongsUrl = 'http://localhost:3000/api/sessions/' + this.state.sessionId;
+    let thisSessionSongsUrl = 'http://localhost:3000/api/sessions/' + this.state.sessionId + "/songs";
 
 
     Promise.all([
@@ -185,6 +186,24 @@ class App extends React.Component {
 
 
   componentDidMount(){
+    console.log("window.location.pathname " , window.location.pathname);
+
+    if( (window.location.pathname) === "/playlist" ){
+      console.log("playlist");
+      this.setState({
+        playlist: true,
+        searchPanel: true,
+        videoComponent: false
+
+      })
+    } else {
+      console.log("video/default");
+      this.setState({
+        playlist: false,
+        searchPanel: false,
+        videoComponent: true
+      })
+    }
 
     console.log('component did mount');
     this.loadData();
@@ -214,11 +233,18 @@ class App extends React.Component {
       }
     };
 
+    let videoPanelClasses = "video-panel"
+    if(this.state.videoComponent === true){
+      videoPanelClasses = "video-panel show";
+    } else if(this.state.videoComponent === false){
+      videoPanelClasses = "video-panel hide";
+    }
+
     return(
       <div>
         <h1 className="logo">Weraoke</h1>
 
-        <div className="video-panel">
+        <div className={videoPanelClasses}>
           <YouTube
           videoId={currentSong.video_link}
           opts={opts}
