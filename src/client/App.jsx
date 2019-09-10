@@ -26,9 +26,9 @@ class App extends React.Component {
 
       //data stuff
       preloadSong: {
-        "name": "Baby Shark",
-        "artist": "Pinkfong",
-        "video_link": "XqZsoesa55w"
+        "name": "Never Gonna Give You Up",
+        "artist": "Rick Astley",
+        "video_link": "dQw4w9WgXcQ"
       },
       sessionLoaded: false,
       sessionSongs: [],

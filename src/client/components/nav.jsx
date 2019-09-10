@@ -6,9 +6,15 @@ class Nav extends React.Component {
     render() {
 
     return (
-      <div className="nav">
+      <div className="top">
         <h1 className="logo">Weraoke</h1>
-        <a>Create New Session</a>
+        <nav>
+          <ul>
+            <li><a>Create New Session</a></li>
+            <li><a>Add Song</a></li>
+          </ul>
+        </nav>
+
       </div>
     );
   }

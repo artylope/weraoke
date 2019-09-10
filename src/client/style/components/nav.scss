@@ -1,4 +1,4 @@
-.nav{
+.top{
   background: $body-bg;
   position: fixed;
   top: 0;
@@ -13,4 +13,19 @@
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
+
+  nav{
+    ul{
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      li{
+        padding-left: 15px;
+        padding-right: 15px;
+        a{
+
+        }
+      }
+    }
+  }
 }
