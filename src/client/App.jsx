@@ -47,8 +47,7 @@ class App extends React.Component {
       nowPlaying: 0,
       isPlaying: true,
       songLyrics: '',
-            artist: 'backstreet boys',
-            track: 'i want it that way',
+
     };
 
 
@@ -57,7 +56,7 @@ class App extends React.Component {
     this.handlePlaylistItemDelete = this.handlePlaylistItemDelete.bind(this);
     this.handleSearchPanelShowHide = this.handleSearchPanelShowHide.bind(this);
     this.handleAddSongToPlaylist = this.handleAddSongToPlaylist.bind(this);
-    this.getLyricsForCurrentSong = this.getLyricsForCurrentSong(this);
+    // this.getLyricsForCurrentSong = this.getLyricsForCurrentSong.bind(this);
 
   }
 
@@ -162,34 +161,29 @@ class App extends React.Component {
     });
   }
 
-  getLyricsForCurrentSong(artist, song){
-    console.log('get lyrics')
-    if (this.state.sessionLoaded === true) {
-        console.log('loaded')
-        let nowSong = this.state.sessionSongs[this.state.nowPlaying]
-        console.log(nowSong)
+  // getLyricsForCurrentSong(artist, song){
+  //   console.log('get lyrics')
+  //   let lyricsURL = 'https://orion.apiseeds.com/api/music/lyric/'+ artist+ '/' + song +'?apikey=6OuZYIhADWWkOz53zaP9udYTuorPEnHiYze6l0PlTqxUtGTzaeOSx2X7yuTd9X3J'
+  //   fetch(lyricsURL)
+  //       .then(res => res.json())
+  //       .then(
+  //           (res) => {
+  //               console.log(res)
+  //               // this.setState({
+  //               //     songLyrics: result.result.track.text
+  //               // });
+  //           })
+  //       .catch((error) => {
+  //                   this.setState({
 
-        let lyricsURL = 'https://orion.apiseeds.com/api/music/lyric/'+ this.state.artist+ '/' + this.state.track +'?apikey=6OuZYIhADWWkOz53zaP9udYTuorPEnHiYze6l0PlTqxUtGTzaeOSx2X7yuTd9X3J'
-        fetch(lyricsURL)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    console.log(result.result)
-                    this.setState({
-                        songLyrics: result.result.track.text
-                    });
-                }
-                //     (error) => {
-                //         this.setState({
-
-                //             error
-                //         });
-                //     }
-                )
-    } else {
-        console.log('not loaded')
-    }
-  }
+  //                       error
+  //                   });
+  //               }
+  //           );
+  //   // } else {
+  //   //     console.log('not loaded')
+  //   // }
+  // }
 
   loadData(){
     //multiple fetch API
@@ -256,7 +250,8 @@ class App extends React.Component {
       currentSong = this.state.preloadSong;
     } else if (sessionSongs.length > 0) {
       currentSong = this.state.sessionSongs[this.state.nowPlaying];
-      console.log('now playing: ', currentSong)
+      console.log('now playing: ', this.state.sessionSongs)
+      console.log('now playing: ', this.state.nowPlaying)
     }
 
     //1280 x 780
@@ -324,9 +319,12 @@ class App extends React.Component {
             handleSearchPanelShowHide = {this.handleSearchPanelShowHide}
             searchPanel={this.state.searchPanel} allSongs = {this.state.allSongs}
             handleAddSongToPlaylist = {this.handleAddSongToPlaylist}/>
-         <Lyrics 
-           getLyricsForCurrentSong = {this.state.getLyricsForCurrentSong} 
-           songLyrics = {this.state.songLyrics} />
+         <Lyrics
+          //songLyrics = {this.state.songLyrics}
+           currentSong = {currentSong}
+           sessionSongs = {this.state.sessionSongs}
+           nowPlaying = {this.state.nowPlaying} />
+
       </div>
     )
   }

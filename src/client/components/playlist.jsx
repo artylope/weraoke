@@ -9,6 +9,7 @@ class Playlist extends React.Component{
 
   render() {
 
+     console.log('eggggg', this.props.sessionSongs)
      let playlistClasses = "";
 
      if(this.props.playlist === true){
