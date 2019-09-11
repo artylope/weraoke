@@ -67,9 +67,33 @@
       border-radius: 5px;
       color: lighten($body-text,10%);
 
+      .song-details{
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+
+        .song-name{
+          margin-bottom: 10px;
+        }
+
+        .song-artist{
+          font-size: .7em;
+        }
+
+
+      }
+
       a{
+        height: 100%;
         margin-left: 30px;
       }
+
+      &:hover{
+        transform: translateY(-5px);
+        background: $playlist-item-bg-hover;
+        color: white;
+      }
+
     }
   }
 

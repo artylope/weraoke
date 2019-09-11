@@ -278,8 +278,21 @@ button {
       padding: 20px;
       border-radius: 5px;
       color: #808099; }
+      .search .all-songs .each-song .song-details {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center; }
+        .search .all-songs .each-song .song-details .song-name {
+          margin-bottom: 10px; }
+        .search .all-songs .each-song .song-details .song-artist {
+          font-size: .7em; }
       .search .all-songs .each-song a {
+        height: 100%;
         margin-left: 30px; }
+      .search .all-songs .each-song:hover {
+        transform: translateY(-5px);
+        background: #1b1b2c;
+        color: white; }
   .search.show {
     left: 0; }
   .search.hide {
@@ -347,3 +360,26 @@ button {
     visibility: hidden; }
   .song-lyrics.show {
     visibility: visible; }
+  .song-lyrics .minimise-lyrics {
+    position: relative;
+    float: right;
+    top: -10px;
+    right: -20px; }
+
+.lyrics-panel-button-wrapper {
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .lyrics-panel-button-wrapper .lyrics-panel-button {
+    color: #1b1b28;
+    background: #666680;
+    padding: 10px 30px;
+    border-radius: 50px; }
+    .lyrics-panel-button-wrapper .lyrics-panel-button.hide {
+      visibility: hidden; }
+    .lyrics-panel-button-wrapper .lyrics-panel-button.show {
+      visibility: visible; }

@@ -12,6 +12,9 @@ class Lyrics extends React.Component {
       }
         return (
             <div className={lyricsClasses}>
+                <div className="minimise-lyrics" onClick={()=>{this.props.handleLyricsShowHide(this.props.lyricsPanel)}}>
+                  <i class='bx bx-x-circle' ></i>
+                </div>
                 <p>{this.props.lyrics}</p>
             </div>
         );

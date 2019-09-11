@@ -33,4 +33,38 @@
   &.show{
     visibility: visible;
   }
+
+  .minimise-lyrics{
+    position: relative;
+    float: right;
+    top: -10px;
+    right: -20px;
+  }
+}
+
+.lyrics-panel-button-wrapper{
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .lyrics-panel-button{
+    color: $body-bg;
+    background: $body-text;
+    padding: 10px 30px;
+    border-radius: 50px;
+
+      &.hide{
+        visibility: hidden;
+      }
+
+      &.show{
+        visibility: visible;
+      }
+  }
+
+
 }

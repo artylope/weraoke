@@ -10,7 +10,7 @@ class Search extends React.Component{
 
       this.state = {
           searchTerm: '',
-          searchResults: this.props.sessionSongs
+          searchResults: this.props.allSongs
       };
 
       this.handleSearchInput = this.handleSearchInput.bind(this);
@@ -27,7 +27,7 @@ class Search extends React.Component{
     // console.log(searchTerm)
     searchTerm = searchTerm.toLowerCase();
 
-    var searchResults =  allSongs.filter( function(song) {
+    let searchResults =  allSongs.filter( function(song) {
       if( song.song_name.toLowerCase().includes(searchTerm) || song.artist_name.toLowerCase().includes(searchTerm)){
         return song;
       }
@@ -40,6 +40,12 @@ class Search extends React.Component{
     })
   }
 
+  componentDidMount(){
+    this.setState({
+      searchResults: this.props.allSongs
+    })
+  }
+  
   render() {
 
     let eachSongClasses = 'each-song';
@@ -66,7 +72,10 @@ class Search extends React.Component{
     let searchResultsList = this.state.searchResults.map( (song, index) => {
           return(
           <div className={eachSongClasses} key={index}>
-            <p>{song.song_name} , {song.artist_name}</p>
+            <div className="song-details">
+              <p className="song-name">{song.song_name}</p>
+              <p className="song-artist">{song.artist_name}</p>
+            </div>
             <a onClick={()=>{this.props.handleAddSongToPlaylist(song.id)}}>Add</a>
           </div>
         )});

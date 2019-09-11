@@ -14,6 +14,7 @@ import PlaylistButton from './components/playlistButton';
 import Song from './components/song';
 import Session_Song from './components/session_song';
 import Lyrics from './components/lyrics';
+import LyricsPanelButton from './components/lyricsPanelButton';
 // import Form from './components/form';
 
 
@@ -44,7 +45,7 @@ class App extends React.Component {
       //current song info
       nowPlaying: 0,
       isPlaying: true,
-      lyrics:''
+      lyrics:'Loading lyrics...'
 
     };
 
@@ -54,6 +55,7 @@ class App extends React.Component {
     this.handlePlaylistItemDelete = this.handlePlaylistItemDelete.bind(this);
     this.handleSearchPanelShowHide = this.handleSearchPanelShowHide.bind(this);
     this.handleAddSongToPlaylist = this.handleAddSongToPlaylist.bind(this);
+    this.handleLyricsShowHide = this.handleLyricsShowHide.bind(this);
 
   }
 
@@ -159,6 +161,20 @@ class App extends React.Component {
          playlist: true
        })
     });
+  }
+
+  handleLyricsShowHide(state){
+    // console.log('clicked');
+    // console.log(state);
+    if(state === true){
+      this.setState({
+        lyricsPanel: false
+      })
+    } else if(state === false){
+      this.setState({
+        lyricsPanel: true
+      })
+    }
   }
 
   loadData(){
@@ -336,9 +352,16 @@ class App extends React.Component {
         <Search
             sessionSongs= {this.state.sessionSongs}
             handleSearchPanelShowHide = {this.handleSearchPanelShowHide}
-            searchPanel={this.state.searchPanel} allSongs = {this.state.allSongs}
+            searchPanel={this.state.searchPanel}
+            allSongs = {this.state.allSongs}
             handleAddSongToPlaylist = {this.handleAddSongToPlaylist}/>
-        <Lyrics lyricsPanel={this.state.lyricsPanel} lyrics={this.state.lyrics}/>
+        <LyricsPanelButton
+            lyricsPanel={this.state.lyricsPanel}
+            handleLyricsShowHide = {this.handleLyricsShowHide}/>
+        <Lyrics
+            lyricsPanel={this.state.lyricsPanel}
+            lyrics={this.state.lyrics}
+            handleLyricsShowHide = {this.handleLyricsShowHide}/>
 
 
       </div>
