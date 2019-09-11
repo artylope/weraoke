@@ -3,8 +3,7 @@ CREATE TABLE IF NOT EXISTS songs (
   id SERIAL PRIMARY KEY,
   song_name TEXT,
   artist_id INTEGER,
-  video_link TEXT,
-  lyrics TEXT
+  video_link TEXT
 );
 
 
