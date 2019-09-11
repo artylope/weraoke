@@ -18,13 +18,13 @@ class Search extends React.Component{
 
 
   handleSearchInput(searchTerm){
-    console.log(searchTerm);
+    // console.log(searchTerm);
     this.updateSearchResults(searchTerm);
   }
 
   updateSearchResults(searchTerm){
     let allSongs = this.props.allSongs;
-    console.log(searchTerm)
+    // console.log(searchTerm)
     searchTerm = searchTerm.toLowerCase();
 
     var searchResults =  allSongs.filter( function(song) {
@@ -33,7 +33,7 @@ class Search extends React.Component{
       }
     });
 
-    console.log(searchResults);
+    // console.log(searchResults);
 
     this.setState({
       searchResults: searchResults
@@ -62,7 +62,7 @@ class Search extends React.Component{
       searchPanelClasses = "search hide"
     }
 
-    console.log(this.state.searchResults);
+    // console.log(this.state.searchResults);
     let searchResultsList = this.state.searchResults.map( (song, index) => {
           return(
           <div className={eachSongClasses} key={index}>
