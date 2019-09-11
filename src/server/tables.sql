@@ -21,5 +21,6 @@ CREATE TABLE IF NOT EXISTS sessions (
 CREATE TABLE IF NOT EXISTS sessions_songs (
 	id SERIAL PRIMARY KEY,
 	session_id INTEGER,
-	song_id INTEGER
+	song_id INTEGER,
+	order_num INTEGER
 );
