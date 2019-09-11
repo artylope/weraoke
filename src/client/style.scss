@@ -4,10 +4,10 @@
 @import 'style/partials/_variables.scss';
 
 @import 'style/partials/base.scss';
-@import 'style/partials/nav.scss';
 @import 'style/partials/form.scss';
 @import 'style/partials/button.scss';
 
+@import 'style/components/nav.scss';
 @import 'style/components/playlist.scss';
 @import 'style/components/playlist-button.scss';
 @import 'style/components/search.scss';
