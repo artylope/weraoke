@@ -89,7 +89,7 @@ INSERT INTO songs (song_name, artist_id, video_link) VALUES ('Roar', 16, 'CevxZv
 INSERT INTO songs (song_name, artist_id, video_link) VALUES ('Say You Won''t Let Go', 17, '0yW7w8F2TVA');
 INSERT INTO songs (song_name, artist_id, video_link) VALUES ('Falling Like The Stars', 17, 'PMGY8fLwess');
 INSERT INTO songs (song_name, artist_id, video_link) VALUES ('Can I Be Him', 17, 'L3dPK8tDn6g');
-INSERT INTO songs (song_name, artist_id, video_link) VALUES ('Girls Like You ft. Cardi B', 18);
+INSERT INTO songs (song_name, artist_id, video_link) VALUES ('Girls Like You ft. Cardi B', 18, 'aJOTlE1K90k');
 INSERT INTO songs (song_name, artist_id, video_link) VALUES ('Galway Girl', 15, '87gWaABqGYs');
 INSERT INTO songs (song_name, artist_id, video_link) VALUES ('Back To Love', 19, 'r7CWEE3ZAWs');
 INSERT INTO songs (song_name, artist_id, video_link) VALUES ('Sugar', 18, '09R8_2nJtjg');
