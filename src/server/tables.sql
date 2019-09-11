@@ -3,8 +3,7 @@ CREATE TABLE IF NOT EXISTS songs (
   id SERIAL PRIMARY KEY,
   song_name TEXT,
   artist_id INTEGER,
-  video_link TEXT,
-  lyrics TEXT
+  video_link TEXT
 );
 
 
@@ -22,5 +21,6 @@ CREATE TABLE IF NOT EXISTS sessions (
 CREATE TABLE IF NOT EXISTS sessions_songs (
 	id SERIAL PRIMARY KEY,
 	session_id INTEGER,
-	song_id INTEGER
+	song_id INTEGER,
+	order_num INTEGER
 );
