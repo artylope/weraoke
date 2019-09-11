@@ -3,7 +3,7 @@ module.exports = (dbPoolInstance) => {
 
     let getAll = (callback) => {
 
-         const queryString = "select artists.artist_name, songs.song_name, songs.video_link, songs.lyrics from songs inner join artists on (songs.artist_id = artists.id) order by artists.id";
+         const queryString = "select artists.artist_name, songs.song_name, songs.video_link from songs inner join artists on (songs.artist_id = artists.id) order by artists.id";
 
         dbPoolInstance.query(queryString, (error, queryResult) => {
             if (error) {
@@ -21,7 +21,7 @@ module.exports = (dbPoolInstance) => {
 
         let arr = [id];
 
-        const queryString = "select artists.artist_name, songs.song_name, songs.video_link, songs.lyrics from songs inner join artists on (songs.artist_id = artists.id) where artists.id=($1)";
+        const queryString = "select artists.artist_name, songs.song_name, songs.video_link from songs inner join artists on (songs.artist_id = artists.id) where artists.id=($1)";
 
         dbPoolInstance.query(queryString, arr, (error, queryResult) => {
             if (error) {

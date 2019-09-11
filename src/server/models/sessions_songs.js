@@ -5,7 +5,7 @@ module.exports = (dbPoolInstance) => {
 
         let arr = [id];
 
-        const queryString = "select sessions_songs.id, songs.song_name, songs.video_link, songs.lyrics, artists.artist_name, sessions.session_name from sessions_songs inner join songs on (sessions_songs.song_id = songs.id) inner join artists on (artists.id = songs.artist_id) inner join sessions on (sessions_songs.session_id = sessions.id) where sessions.id=($1) order by sessions_songs.id";
+        const queryString = "select sessions_songs.id, songs.song_name, songs.video_link, artists.artist_name, sessions.session_name from sessions_songs inner join songs on (sessions_songs.song_id = songs.id) inner join artists on (artists.id = songs.artist_id) inner join sessions on (sessions_songs.session_id = sessions.id) where sessions.id=($1) order by sessions_songs.id";
 
         dbPoolInstance.query(queryString, arr, (error, queryResult) => {
             if (error) {
