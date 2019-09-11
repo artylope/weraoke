@@ -15,7 +15,7 @@ class Lyrics extends React.Component {
     render() {
         return (
             <div className="song-lyrics">
-                {this.props.lyrics}
+                <p>{this.props.lyrics}</p>
             </div>
         );
     }
