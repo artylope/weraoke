@@ -39,6 +39,7 @@ class App extends React.Component {
       searchPanel: false,
       playlistEditMode: false,
       videoComponent: true,
+      lyricsPanel:true,
 
       //current song info
       nowPlaying: 0,
@@ -228,7 +229,8 @@ class App extends React.Component {
       this.setState({
         playlist: true,
         searchPanel: true,
-        videoComponent: true
+        videoComponent: true,
+        lyricsPanel: true
 
       })
     } else {
@@ -236,7 +238,8 @@ class App extends React.Component {
       this.setState({
         playlist: false,
         searchPanel: false,
-        videoComponent: true
+        videoComponent: true,
+        lyricsPanel: true
       })
     }
 
@@ -335,7 +338,7 @@ class App extends React.Component {
             handleSearchPanelShowHide = {this.handleSearchPanelShowHide}
             searchPanel={this.state.searchPanel} allSongs = {this.state.allSongs}
             handleAddSongToPlaylist = {this.handleAddSongToPlaylist}/>
-        <Lyrics lyrics={this.state.lyrics}/>
+        <Lyrics lyricsPanel={this.state.lyricsPanel} lyrics={this.state.lyrics}/>
 
 
       </div>

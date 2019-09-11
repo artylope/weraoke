@@ -2,19 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Lyrics extends React.Component {
-    constructor(props){
-        super(props);
-        this.state= {
-
-        }
-
-    }
-
-
 
     render() {
+      let lyricsClasses;
+      if (this.props.lyricsPanel === true){
+        lyricsClasses = 'song-lyrics show';
+      } else if(this.props.lyricsPanel === false){
+        lyricsClasses = 'song-lyrics hide';
+      }
         return (
-            <div className="song-lyrics">
+            <div className={lyricsClasses}>
                 <p>{this.props.lyrics}</p>
             </div>
         );
