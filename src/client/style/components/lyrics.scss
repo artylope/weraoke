@@ -10,8 +10,9 @@
   width: 100%;
   height: 150px;
   overflow: scroll;
-  font-size: 24px;
-  line-height: 1.6;
+  font-size: 30px;
+  line-height: 1.4;
+  text-align: center;
 
   &::-webkit-scrollbar {
   width: 0;
@@ -33,4 +34,43 @@
   &.show{
     visibility: visible;
   }
+
+  .minimise-lyrics{
+    position: fixed;
+    float: right;
+    bottom: 0px;
+    right: 20px;
+    font-size: 15px;
+    color: $body-bg;
+    background: $body-text;
+    padding: 10px 30px;
+    border-radius: 50px;
+  }
+}
+
+.lyrics-panel-button-wrapper{
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .lyrics-panel-button{
+    color: $body-bg;
+    background: $body-text;
+    padding: 10px 30px;
+    border-radius: 50px;
+
+      &.hide{
+        visibility: hidden;
+      }
+
+      &.show{
+        visibility: visible;
+      }
+  }
+
+
 }

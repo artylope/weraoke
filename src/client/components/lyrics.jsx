@@ -10,9 +10,23 @@ class Lyrics extends React.Component {
       } else if(this.props.lyricsPanel === false){
         lyricsClasses = 'song-lyrics hide';
       }
+
+      let lyrics = this.props.lyrics.split("\n");
+
+      let lyricsDisplay = lyrics.map( line => {
+        return(
+          <p>{line}</p>
+        );
+      })
+
+      console.log(lyrics);
+
         return (
             <div className={lyricsClasses}>
-                <p>{this.props.lyrics}</p>
+                <div className="minimise-lyrics" onClick={()=>{this.props.handleLyricsShowHide(this.props.lyricsPanel)}}>
+                  <div>Hide Lyrics</div>
+                </div>
+                <div>{lyricsDisplay}</div>
             </div>
         );
     }
