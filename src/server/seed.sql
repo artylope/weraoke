@@ -174,7 +174,13 @@ INSERT INTO songs (song_name, artist_id, video_link) VALUES ('Chandelier', 50, '
 INSERT INTO songs (song_name, artist_id, video_link) VALUES ('Sunflower', 51, 'ApXoWvfEYVU');
 INSERT INTO songs (song_name, artist_id, video_link) VALUES ('Better Now', 51, 'UYwF-jdcVjY');
 INSERT INTO songs (song_name, artist_id, video_link) VALUES ('Circles', 51, 'wXhTHyIgQ_U');
-
+INSERT INTO songs (song_name, artist_id, video_link) VALUES ('What Lovers Do ft. SZA', 18, '5Wiio4KoGe8');
+INSERT INTO songs (song_name, artist_id, video_link) VALUES ('Moves Like Jagger ft. Christina Aguilera', 18, 'iEPTlhBmwRg');
+INSERT INTO songs (song_name, artist_id, video_link) VALUES ('Makes Me Wonder', 18, 'sAebYQgy4n4');
+INSERT INTO songs (song_name, artist_id, video_link) VALUES ('Won''t Go Home Without You', 18, 'VlMEGBsw6j8');
+INSERT INTO songs (song_name, artist_id, video_link) VALUES ('Swish Swish ft. Nicki Minaj', 16, 'iGk5fR-t5AU');
+INSERT INTO songs (song_name, artist_id, video_link) VALUES ('This Is How We Do', 16, '7RMQksXpQSk');
+INSERT INTO songs (song_name, artist_id, video_link) VALUES ('Dark Horse ft. Juicy J', 16, '0KSOMA3QBU0');
 
 INSERT INTO sessions (session_name) VALUES ('emo monday');
 INSERT INTO sessions (session_name) VALUES ('retro');
@@ -201,7 +207,9 @@ INSERT INTO sessions_songs (session_id, song_id, order_num) VALUES (3,6,1);
 INSERT INTO sessions_songs (session_id, song_id, order_num) VALUES (3,10,2);
 INSERT INTO sessions_songs (session_id, song_id, order_num) VALUES (3,11,3);
 INSERT INTO sessions_songs (session_id, song_id, order_num) VALUES (3,3,4);
-INSERT INTO sessions_songs (session_id, song_id, order_num) VALUES (4,8,1);
+INSERT INTO sessions_songs (session_id, song_id, order_num) VALUES (4,106,1);
+INSERT INTO sessions_songs (session_id, song_id, order_num) VALUES (4,12,2);
+INSERT INTO sessions_songs (session_id, song_id, order_num) VALUES (4,8,3);
 INSERT INTO sessions_songs (session_id, song_id, order_num) VALUES (4,12,2);
 INSERT INTO sessions_songs (session_id, song_id, order_num) VALUES (5,2,1);
 INSERT INTO sessions_songs (session_id, song_id, order_num) VALUES (5,4,2);
