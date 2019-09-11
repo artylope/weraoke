@@ -43,9 +43,8 @@ class App extends React.Component {
       //current song info
       nowPlaying: 0,
       isPlaying: true,
-      songLyrics: '',
-            artist: 'backstreet boys',
-            track: 'i want it that way',
+      lyrics:''
+
     };
 
 
@@ -54,13 +53,12 @@ class App extends React.Component {
     this.handlePlaylistItemDelete = this.handlePlaylistItemDelete.bind(this);
     this.handleSearchPanelShowHide = this.handleSearchPanelShowHide.bind(this);
     this.handleAddSongToPlaylist = this.handleAddSongToPlaylist.bind(this);
-    this.getLyricsForCurrentSong = this.getLyricsForCurrentSong(this);
 
   }
 
   handlePlaylistShowHide(state){
-    console.log('clicked');
-    console.log(state);
+    // console.log('clicked');
+    // console.log(state);
     if(state === true){
       this.setState({
         playlist: false
@@ -83,9 +81,9 @@ class App extends React.Component {
   }
 
   handlePlaylistItemDelete(songId, sessionSongId){
-    console.log('delete song from playlist ', songId);
-    console.log('currentSong' + this.state.nowPlaying);
-    console.log('sessionSongId' + sessionSongId);
+    // console.log('delete song from playlist ', songId);
+    // console.log('currentSong' + this.state.nowPlaying);
+    // console.log('sessionSongId' + sessionSongId);
 
     let deleteSongURL = 'http://localhost:3000/api/sessions/' + this.state.sessionId + '/songs/delete';
     fetch(deleteSongURL , {
@@ -119,8 +117,8 @@ class App extends React.Component {
   }
 
   handleSearchPanelShowHide(state){
-    console.log('clicked');
-    console.log(state);
+    // console.log('clicked');
+    // console.log(state);
     if(state === true){
       this.setState({
         searchPanel: false
@@ -133,9 +131,9 @@ class App extends React.Component {
   }
 
   handleAddSongToPlaylist(songId){
-    console.log('add song ', songId);
+    // console.log('add song ', songId);
     let addSongURL = 'http://localhost:3000/api/sessions/' + this.state.sessionId + '/songs/new';
-    console.log(addSongURL);
+    // console.log(addSongURL);
 
 
     fetch(addSongURL, {
@@ -153,42 +151,13 @@ class App extends React.Component {
     })
     .then( (response) => {
        //do something awesome that makes the world a better place
-       console.log('done');
-       console.log('response', response);
+       // console.log('done');
+       // console.log('response', response);
        this.loadData();
        this.setState({
          playlist: true
        })
     });
-  }
-
-  getLyricsForCurrentSong(artist, song){
-    console.log('get lyrics')
-    if (this.state.sessionLoaded === true) {
-        console.log('loaded')
-        let nowSong = this.state.sessionSongs[this.state.nowPlaying]
-        console.log(nowSong)
-
-        let lyricsURL = 'https://orion.apiseeds.com/api/music/lyric/'+ this.state.artist+ '/' + this.state.track +'?apikey=6OuZYIhADWWkOz53zaP9udYTuorPEnHiYze6l0PlTqxUtGTzaeOSx2X7yuTd9X3J'
-        fetch(lyricsURL)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    console.log(result.result)
-                    this.setState({
-                        songLyrics: result.result.track.text
-                    });
-                }
-                //     (error) => {
-                //         this.setState({
-
-                //             error
-                //         });
-                //     }
-                )
-    } else {
-        console.log('not loaded')
-    }
   }
 
   loadData(){
@@ -219,9 +188,40 @@ class App extends React.Component {
             });
   }
 
+  loadLyrics(artist, song){
+    console.log('in load lyrics');
+    let lyricsURL = 'https://orion.apiseeds.com/api/music/lyric/'+artist+'/'+song+'?apikey=6OuZYIhADWWkOz53zaP9udYTuorPEnHiYze6l0PlTqxUtGTzaeOSx2X7yuTd9X3J'
+
+
+    Promise.all([
+            fetch(lyricsURL).then(lyrics => lyrics.json())
+            ])
+            .then((result) => {
+              console.log("result", result);
+
+              if(result[0].error){
+                this.setState({
+                  lyrics: "Lyrics not found.",
+                });
+              } else {
+                this.setState({
+                  lyrics: result[0].result.track.text,
+                });
+                console.log('in load lyrics promise set!');
+              }
+
+
+
+            })
+            .catch((err) => {
+                console.log(err);
+                console.log('in load lyrics promise errrrrr!');
+            });
+  }
+
 
   componentDidMount(){
-    console.log("window.location.pathname " , window.location.pathname);
+    // console.log("window.location.pathname " , window.location.pathname);
 
     if( (window.location.pathname) === "/playlist" ){
       console.log("playlist");
@@ -242,13 +242,12 @@ class App extends React.Component {
 
     console.log('component did mount');
     this.loadData();
-
     }
 
 
 
   render(){
-
+    console.log('in render');
     let sessionSongs = this.state.sessionSongs;
 
     let currentSong;
@@ -256,8 +255,12 @@ class App extends React.Component {
       currentSong = this.state.preloadSong;
     } else if (sessionSongs.length > 0) {
       currentSong = this.state.sessionSongs[this.state.nowPlaying];
-      console.log('now playing: ', currentSong)
+      console.log(currentSong);
+      // console.log('now playing: ', this.state.sessionSongs)
+      // console.log('now playing: ', this.state.nowPlaying)
     }
+
+
 
     //1280 x 780
     //960 x 585
@@ -288,7 +291,15 @@ class App extends React.Component {
           opts={opts}
           onReady={this._onReady}
           onPlay={
-            console.log('nowPlaying' , this.state.nowPlaying)
+
+            ()=>{
+              console.log('nowPlaying' , this.state.nowPlaying);
+              //get lyrics
+              let artist = this.state.sessionSongs[this.state.nowPlaying].artist_name;
+              let song = this.state.sessionSongs[this.state.nowPlaying].song_name;
+
+              this.loadLyrics(artist, song);
+            }
           }
           onEnd={()=>{
             if( this.state.nowPlaying === (this.state.sessionSongs.length - 1)){
@@ -297,8 +308,8 @@ class App extends React.Component {
               })
             } else {
               this.setState({
-                nowPlaying: (this.state.nowPlaying) + 1,
-              });
+                nowPlaying: (this.state.nowPlaying) + 1
+              })
             }
           }}
           />
@@ -324,9 +335,9 @@ class App extends React.Component {
             handleSearchPanelShowHide = {this.handleSearchPanelShowHide}
             searchPanel={this.state.searchPanel} allSongs = {this.state.allSongs}
             handleAddSongToPlaylist = {this.handleAddSongToPlaylist}/>
-         <Lyrics
-           getLyricsForCurrentSong = {this.state.getLyricsForCurrentSong}
-           songLyrics = {this.state.songLyrics} />
+        <Lyrics lyrics={this.state.lyrics}/>
+
+
       </div>
     )
   }

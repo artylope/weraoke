@@ -1,14 +1,21 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 
 class Lyrics extends React.Component {
+    constructor(props){
+        super(props);
+        this.state= {
+
+        }
+
+    }
+
+
 
     render() {
-        const songlyrics = this.props.songLyrics
-
         return (
-            <div className="song-lyrics"><p>
-                {songlyrics}</p>
+            <div className="song-lyrics">
+                <p>{this.props.lyrics}</p>
             </div>
         );
     }
