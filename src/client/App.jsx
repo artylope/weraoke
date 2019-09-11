@@ -266,7 +266,7 @@ class App extends React.Component {
       width: '1280',
       playerVars: { // https://developers.google.com/youtube/player_parameters
         autoplay: 1,
-        controls: 0,
+        controls: 1,
         modestbranding: 1
       }
     };
