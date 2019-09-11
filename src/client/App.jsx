@@ -281,14 +281,6 @@ class App extends React.Component {
       videoPanelClasses = "video-panel hide";
     }
 
-
-    let lyricsRender = '';
-
-    if(this.state.lyricsIsLoaded === false){
-      lyricsRender = "loading";
-    } else if(this.state.lyricsIsLoaded === true){
-      lyricsRender = this.state.lyrics ;
-    }
     return(
       <div>
         <h1 className="logo">Weraoke</h1>

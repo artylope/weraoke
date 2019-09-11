@@ -298,3 +298,25 @@ button {
     visibility: visible; }
   .video-panel.hide {
     visibility: hidden; }
+
+.video-panel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; }
+  .video-panel.show {
+    visibility: visible; }
+  .video-panel.hide {
+    visibility: hidden; }
+
+.song-lyrics {
+  position: absolute;
+  color: white;
+  background: black;
+  bottom: 0;
+  padding: 30px;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  overflow: scroll; }
